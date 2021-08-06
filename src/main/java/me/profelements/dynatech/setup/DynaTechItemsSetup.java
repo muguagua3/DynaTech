@@ -112,7 +112,7 @@ public class DynaTechItemsSetup {
         new VexGem(DynaTechItems.DT_RESOURCES, DynaTechItems.VEX_GEM, RecipeType.MOB_DROP,
             new ItemStack[] {
                 null, null, null,
-                null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&a恼鬼"), null,
+                null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&aVex"), null,
                 null, null, null
         }).register(plugin);
 
@@ -134,7 +134,7 @@ public class DynaTechItemsSetup {
         new MobDropItem(DynaTechItems.DT_RESOURCES, DynaTechItems.GHOSTLY_ESSENCE, RecipeType.MOB_DROP,
             new ItemStack[] {
                 null, null, null,
-                null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&a恼鬼"), null,
+                null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&aVex"), null,
                 null, null, null
         }, 80).register(plugin);
 
