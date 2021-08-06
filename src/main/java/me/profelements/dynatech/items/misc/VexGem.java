@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class VexGem extends SlimefunItem implements NotPlaceable, RandomMobDrop {
 
-    private final ItemSetting<Boolean> dropSetting = new ItemSetting<>(this, " drop-from-vexs", true);
+    private final ItemSetting<Boolean> dropSetting = new ItemSetting<>(this, "drop-from-vexs", true);
     private final ItemSetting<Integer> chance = new IntRangeSetting(this, "vex-drop-chance", 0, 10, 100);
 
     public VexGem(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
