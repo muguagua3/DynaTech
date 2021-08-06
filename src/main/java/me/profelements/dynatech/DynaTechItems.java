@@ -19,179 +19,180 @@ import dev.j3fftw.extrautils.utils.LoreBuilderDynamic;
 public class DynaTechItems {
 
     private DynaTechItems() {}
-    
+
     //Categories
-    public static final MultiCategory DT_GENERAL = new MultiCategory(new NamespacedKey(DynaTech.getInstance(), "DT_GENERAL"), new CustomItem(Material.CONDUIT, "&bDynaTech"));
-    public static final SubCategory DT_RESOURCES = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_RESOURCES"), DT_GENERAL, new CustomItem(Material.PUFFERFISH, "&bDynaTech Resources"));
-    public static final SubCategory DT_TOOLS = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_TOOLS"), DT_GENERAL, new CustomItem(Material.DIAMOND_AXE, "&bDynaTech Tools"));
-    public static final SubCategory DT_MACHINES = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_MACHINES"), DT_GENERAL, new CustomItem(Material.SEA_LANTERN, "&bDynaTech Machines"));
-    public static final SubCategory DT_GENERATORS = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_GENERATORS"), DT_GENERAL, new CustomItem(Material.PRISMARINE_BRICKS, "&bDynaTech Generators"));
+    public static final MultiCategory DT_GENERAL = new MultiCategory(new NamespacedKey(DynaTech.getInstance(), "DT_GENERAL"), new CustomItem(Material.CONDUIT, "&b动力科技"));
+    public static final SubCategory DT_RESOURCES = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_RESOURCES"), DT_GENERAL, new CustomItem(Material.PUFFERFISH, "&b动力科技 - 资源"));
+    public static final SubCategory DT_TOOLS = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_TOOLS"), DT_GENERAL, new CustomItem(Material.DIAMOND_AXE, "&b动力科技 - 工具"));
+    public static final SubCategory DT_MACHINES = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_MACHINES"), DT_GENERAL, new CustomItem(Material.SEA_LANTERN, "&b动力科技 - 机器"));
+    public static final SubCategory DT_GENERATORS = new SubCategory(new NamespacedKey(DynaTech.getInstance(), "DT_GENERATORS"), DT_GENERAL, new CustomItem(Material.PRISMARINE_BRICKS, "&b动力科技 - 发电机"));
 
     public static final Category DynaTechGeneral = new Category(new NamespacedKey(DynaTech.getInstance(), "dynatech"),
-        new CustomItem(Material.CONDUIT, "&bDynaTech")
+        new CustomItem(Material.CONDUIT, "&b动力科技")
     );
 
     public static final RecipeType DynaTechScoop = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "dt_scoop"),
-        new CustomItem(Material.IRON_SHOVEL, "&bScoop the Bee using a Scoop")
+        new CustomItem(Material.IRON_SHOVEL, "&b使用勺子铲蜜蜂")
     );
 
 
     //RecipeTypes
     // #TODO: Make Orechid use RecipeType + Standard Conversions
-    public static final RecipeType DT_SCOOP = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "DT_SCOOP"), new CustomItem(Material.IRON_SHOVEL, "&bScoop a Bee using a Scoop"));
+    public static final RecipeType DT_SCOOP = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "DT_SCOOP"), new CustomItem(Material.IRON_SHOVEL, "&b使用勺子铲蜜蜂"));
     //public static final RecipeType DT_ORECHID = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "DT_ORECHID"), new CustomItem(Material.END_ROD, "&BTransmuted using the Orechid"));
 
     //General
 
     //Resources
-    public static final SlimefunItemStack STAINLESS_STEEL = new SlimefunItemStack("STAINLESS_STEEL", Material.IRON_INGOT, "&6Stainless Steel Ingot");
-    public static final SlimefunItemStack STAINLESS_STEEL_ROTOR = new SlimefunItemStack("STAINLESS_STEEL_ROTOR", Material.IRON_BLOCK, "&6Stainless Steel Rotor");
-    public static final SlimefunItemStack ANCIENT_MACHINE_CORE = new SlimefunItemStack("ANCIENT_MACHINE_CORE", Material.LAPIS_BLOCK, "&6Ancient Machine Core");
-    public static final SlimefunItemStack VEX_GEM = new SlimefunItemStack("VEX_GEM", SkullItem.fromHash("b91aeca7c17e66d867231b36d96e83c1ede75eaf67ccf3a88dca15d4114ae167"), "&6Vex Gem");
-    public static final SlimefunItemStack MACHINE_SCRAP = new SlimefunItemStack("MACHINE_SCRAP", SkullItem.fromHash("13ea401c7e02d13cea1de6835ee9f5c47757d399dae5c2b9c3efde6ae63ea4a2"), "&6Machine Scrap");
-    public static final SlimefunItemStack ADVANCED_MACHINE_SCRAP = new SlimefunItemStack("ADVANCED_MACHINE_SCRAP",SkullItem.fromHash("4b57a4c68d1d2c5de978ea6de4db91ef387ca6c37966bb8e7c8826f937e6c3"), "&6Advanced Machine Scrap");
-    public static final SlimefunItemStack STAR_DUST = new SlimefunItemStack("STAR_DUST", Material.NETHER_STAR, "&6Star Dust");
-    public static final SlimefunItemStack GHOSTLY_ESSENCE = new SlimefunItemStack("GHOSTLY_ESSENCE", Material.WHITE_DYE, "&6Ghostly Essence");
-    public static final SlimefunItemStack TESSERACTING_OBJ = new SlimefunItemStack("TESSERACTING_OBJ", Material.MUSHROOM_STEM, "&6Tesseracting Object", "&f&oIt shimmers and shifts in your hands");
-    public static final SlimefunItemStack BEE = new SlimefunItemStack("BEE", SkullItem.fromHash("12724a9a4cdd68ba49415560e5be40b4a1c47cb5be1d66aedb52a30e62ef2d47"), "&6Bee");
-    public static final SlimefunItemStack ROBOTIC_BEE = new SlimefunItemStack("ROBOTIC_BEE", SkullItem.fromHash("16f728c89904b2cb57f853d31d0e2061f52917981fedccb1e949528e08eb4140"), "&6Robotic Bee");
-    public static final SlimefunItemStack ADVANCED_ROBOTIC_BEE = new SlimefunItemStack("ADVANCED_ROBOTIC_BEE", SkullItem.fromHash("c1c96e8cf83cbade55ffa667197ea6990290e5c7dc679104332caead97eef09"), "&6Advanced Robotic Bee");
+    public static final SlimefunItemStack STAINLESS_STEEL = new SlimefunItemStack("STAINLESS_STEEL", Material.IRON_INGOT, "&6不锈钢锭");
+    public static final SlimefunItemStack STAINLESS_STEEL_ROTOR = new SlimefunItemStack("STAINLESS_STEEL_ROTOR", Material.IRON_BLOCK, "&6不锈钢转子");
+    public static final SlimefunItemStack ANCIENT_MACHINE_CORE = new SlimefunItemStack("ANCIENT_MACHINE_CORE", Material.LAPIS_BLOCK, "&6古代机器核心");
+    public static final SlimefunItemStack VEX_GEM = new SlimefunItemStack("VEX_GEM", SkullItem.fromHash("b91aeca7c17e66d867231b36d96e83c1ede75eaf67ccf3a88dca15d4114ae167"), "&6恼鬼宝石");
+    public static final SlimefunItemStack MACHINE_SCRAP = new SlimefunItemStack("MACHINE_SCRAP", SkullItem.fromHash("13ea401c7e02d13cea1de6835ee9f5c47757d399dae5c2b9c3efde6ae63ea4a2"), "&6机器废料");
+    public static final SlimefunItemStack ADVANCED_MACHINE_SCRAP = new SlimefunItemStack("ADVANCED_MACHINE_SCRAP",SkullItem.fromHash("4b57a4c68d1d2c5de978ea6de4db91ef387ca6c37966bb8e7c8826f937e6c3"), "&6高级机器废料");
+    public static final SlimefunItemStack STAR_DUST = new SlimefunItemStack("STAR_DUST", Material.NETHER_STAR, "&6星尘");
+    public static final SlimefunItemStack GHOSTLY_ESSENCE = new SlimefunItemStack("GHOSTLY_ESSENCE", Material.WHITE_DYE, "&6幽灵精华");
+    public static final SlimefunItemStack TESSERACTING_OBJ = new SlimefunItemStack("TESSERACTING_OBJ", Material.MUSHROOM_STEM, "&6光学物品", "&f&o在你的手中闪耀并移动");
+    public static final SlimefunItemStack BEE = new SlimefunItemStack("BEE", SkullItem.fromHash("12724a9a4cdd68ba49415560e5be40b4a1c47cb5be1d66aedb52a30e62ef2d47"), "&6蜜蜂");
+    public static final SlimefunItemStack ROBOTIC_BEE = new SlimefunItemStack("ROBOTIC_BEE", SkullItem.fromHash("16f728c89904b2cb57f853d31d0e2061f52917981fedccb1e949528e08eb4140"), "&6机械蜜蜂");
+    public static final SlimefunItemStack ADVANCED_ROBOTIC_BEE = new SlimefunItemStack("ADVANCED_ROBOTIC_BEE", SkullItem.fromHash("c1c96e8cf83cbade55ffa667197ea6990290e5c7dc679104332caead97eef09"), "&6高级机械蜜蜂");
 
     //Tools
     public static final SlimefunItemStack PICNIC_BASKET = new SlimefunItemStack("PICNIC_BASKET",
         new CustomItem(SkullItem.fromHash("7a6bf916e28ccb80b4ebfacf98686ad6af7c4fb257e57a8cb78c71d19dccb2")),
-        "&6Picnic Basket",
+        "&6野餐篮",
         "",
-        "&fAllows you to store food",
-        "&fAutomatically consumes them when you're hungry",
-        "&fMust be in your inventory",
+        "&f允许你储存食物",
+        "&f在你的饥饿度降低时自动喂食",
+        "&f必须储放在物品栏中",
         "",
-        "&fSize: &e27",
+        "&f大小: &e27",
         "",
         "&7ID: <ID>",
         "",
-        "&eRight Click &7to open."
+        "&e右键点击&7打开"
     );
 
     public static final SlimefunItemStack INVENTORY_FILTER = new SlimefunItemStack("INVENTORY_FILTER",
         Material.IRON_BARS,
-        "&6Inventory Filter",
+        "&6物品栏过滤器",
         "",
-        "&fFilters out items on the floor that are in it's inventory",
+        "&f如果捡起的物品已存在于过滤器中",
+        "&f那么该物品就会被丢入虚空",
         "",
         "&7ID: <ID>",
         "",
-        "&eRight Click &7to open."
+        "&e右键点击&7打开"
     );
 
     public static final SlimefunItemStack ELECTRICAL_STIMULATOR = new SlimefunItemStack("ELECTRICAL_STIMULATOR",
         new CustomItem(SkullItem.fromHash("82a319cf66a4de12e3330e8bc4c82c985ccc3cb2230868c336a88fc4a22082a")),
-        "&6Electrical Stimulator",
+        "&6电力刺激器",
         "",
-        "&fAutomatically feed you for energy",
+        "&f使用电力自动喂食",
         "",
-        "&f&oStimulate your senses.",
+        "&f&o刺激你的感官",
         "",
         LoreBuilder.powerCharged(0, 1024)
     );
 
     public static final SlimefunItemStack ANGEL_GEM = new SlimefunItemStack("ANGEL_GEM",
-        Material.NETHERITE_BLOCK, 
-        "&6Flight Gem",
+        Material.NETHERITE_BLOCK,
+        "&6飞行宝石",
         "",
-        "&fPermanent Creative Flight.",
-        "&fHas some speed adjustment settings.",
+        "&f永久性的创造模式的飞行",
+        "&f有一些速度调整的设定",
         "",
-        "&f&oFly just like a bird~",
+        "&f&o像鸟一样飞翔~",
         "",
-        "&7Flight: <enabled>",
-        "&7Flight Speed: <speed>"
+        "&7飞行: <enabled>",
+        "&7飞行速度: <speed>"
     );
 
-    public static final SlimefunItemStack SCOOP = new SlimefunItemStack("SCOOP", 
+    public static final SlimefunItemStack SCOOP = new SlimefunItemStack("SCOOP",
         Material.IRON_SHOVEL,
-        "&6Scoop",
+        "&6勺子",
         "",
-        "&fUsed to capture bees.",
+        "&f用于捕捉蜜蜂",
         "",
-        "&f&oMake sure not to get stung",
+        "&f&o别被蜜蜂蛰到哟~",
         "",
         LoreBuilder.powerCharged(0, 512)
     );
 
     public static final SlimefunItemStack DIMENSIONAL_HOME = new SlimefunItemStack("DIMENSIONAL_HOME",
         new CustomItem(SkullItem.fromHash("eb18cf9e1bf7ec57304ae92f2b00d91643cf0b65067dead34fb48baf18e3c385")),
-        "&6Dimensional Home",
+        "&6异次元之家",
         "",
-        "&fTeleports you to a",
-        "&fseperate dimensional home and back",
+        "&f将你传送到异次元之家",
+        "&f或返回",
         "",
-        "&f&oHome Sweet Home",
+        "&f&o家,甜蜜的家",
         "",
-        "&7CHUNK ID: <id>"
+        "&7区块ID: <id>"
     );
 
     public static final SlimefunItemStack ITEM_BAND_HEALTH = new SlimefunItemStack("ITEM_BAND_HEALTH",
         new CustomItem(SkullItem.fromHash("f1e2428cb359988f4c4ff0e61de21385c62269de19a69762d773223b75dd1666")),
-        "&6Healthy Item Band",
+        "&6物品模组: 生命提升",
         "",
-        "&fWhen applied to armor or tools", 
-        "&fgives you 2 levels of Health Boost",
+        "&f当安装到防具或工具上时",
+        "&f提供生命提升 II 的效果",
         "",
-        "&f&oPowerup!"            
+        "&f&o力量提升!"
     );
 
     public static final SlimefunItemStack ITEM_BAND_HASTE = new SlimefunItemStack("ITEM_BAND_HASTE",
         new CustomItem(SkullItem.fromHash("4f01ec6331a3bc30a8204ec56398d08ca38788556bca9b81d776f6238d567367")),
-        "&6Hasty Item Band",
+        "&6物品模组: 急迫",
         "",
-        "&fWhen applied to armor or tools",
-        "&fgives you 2 levels of Haste",
+        "&f当安装到防具或工具上时",
+        "&f提供急迫 II 的效果",
         "",
-        "&f&oPowerup!"
-    ); 
-            
+        "&f&o力量提升!"
+    );
+
     public static final SlimefunItemStack TESSERACT_BINDER = new SlimefunItemStack("TESSERACT_BINDER",
         Material.NETHERITE_HOE,
-        "&6Tesseract Binder",
+        "&6光学绑定仪",
         "",
-        "&f Used to bind 2 Tesseract together.",
+        "&f用于绑定2个光学传输器.",
         "",
-        "&fRight click to get Location of Tesseract",
-        "&fCrouch Right Click to bind location to Tesseract",
-        ""           
+        "&e右键点击&f获取光学传输器的位置",
+        "&eShift + 右键点击&f将获取的位置绑定至光学传输器",
+        ""
     );
 
     public static final SlimefunItemStack LIQUID_TANK = new SlimefunItemStack("LIQUID_TANK",
         Material.BUCKET,
-        "&6Portable Liquid Tank",
+        "&6便携式液体储存罐",
         "",
-        "&fSimple Liquid Snatcher.",
+        "&f简单的液体掠夺者",
         "",
-        "Right click to grab a fluid",
-        "Shift click to place a fluid",
+        "&e右键点击&7装载液体",
+        "&eShift + 右键点击&7倾倒液体",
         "",
-        "&fFluid Held: NO_FLUID",
-        "&fAmount: 0mb / 16000",
+        "&f存储液体: 没有液体",
+        "&f容量: 0mb / 16000",
         ""
     );
-    
+
     public static final SlimefunItemStack WITHER_GOLEM = new SlimefunItemStack("WITHER_GOLEM",
         Material.WITHER_SKELETON_SKULL,
-        "&6Wither Golem MultiBlock",
+        "&6多方块结构: 凋零傀儡",
         "",
-        "Spawns a Wither Skeleton",
+        "生成一只凋零骷髅",
         ""
     );
 
     //Machines
     public static final SlimefunItemStack AUTO_KITCHEN = new SlimefunItemStack("AUTO_KITCHEN",
         Material.SMOKER,
-        "&6Auto Kitchen",
+        "&6自动厨房",
         "",
-        "&fAutomatically makes Kitchen recipes",
+        "&f自动合成&e厨房&f配方",
         "",
-        "&f&oSmells like cookies",
+        "&f&o闻起来像饼干一样",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
@@ -200,11 +201,11 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER = new SlimefunItemStack("GROWTH_CHAMBER",
         Material.GREEN_STAINED_GLASS,
-        "&6Growth Chamber",
+        "&6培育仓",
         "",
-        "&fAutomatically grows &eplants&f.",
+        "&f让&e作物&f自动生长",
         "",
-        "&f&oIts like a small greenhouse!",
+        "&f&o就像一个小型温室",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
@@ -213,13 +214,13 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_MK2 = new SlimefunItemStack("GROWTH_CHAMBER_MK2",
         Material.LIME_STAINED_GLASS,
-        "&6Growth Chamber MK2",
+        "&6培育仓 MK2",
         "",
-        "&fAutomatically grows &eplants&f.",
+        "&f让&e作物&f自动生长",
         "",
-        "&f&oIts like a small greenhouse!",
+        "&f&o就像一个小型温室",
         "",
-        "&c3x production.",
+        "&c3倍生长速度",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(3),
         LoreBuilderDynamic.powerPerSecond(128)
@@ -227,9 +228,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_END = new SlimefunItemStack("GROWTH_CHAMBER_END",
         Material.MAGENTA_STAINED_GLASS,
-        "&dEnd Growth Chamber",
+        "&d末影培育仓",
         "",
-        "&fAutomatically grows &dchorus flowers.",
+        "&f让&d紫颂花&f自动生长",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
@@ -238,21 +239,21 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_END_MK2 = new SlimefunItemStack("GROWTH_CHAMBER_END_MK2",
         Material.PURPLE_STAINED_GLASS,
-        "&dEnd Growth Chamber MK2",
+        "&d末影培育仓 MK2",
         "",
-        "&fAutomatically grows &dchorus flowers.",
+        "&f让&d紫颂花&f自动生长",
         "",
-        "&c3x production.",
+        "&c3倍生长速度",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(3),
-        LoreBuilderDynamic.powerPerSecond(128)      
+        LoreBuilderDynamic.powerPerSecond(128)
     );
 
     public static final SlimefunItemStack GROWTH_CHAMBER_NETHER = new SlimefunItemStack("GROWTH_CHAMBER_NETHER",
         Material.RED_STAINED_GLASS,
-        "&cNether Growth Chamber",
+        "&c下界培育仓",
         "",
-        "&fAutomatically grows &cnether &fplants.",
+        "&f让&c下界作物&f自动生长",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
@@ -261,11 +262,11 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_NETHER_MK2 = new SlimefunItemStack("GROWTH_CHAMBER_NETHER_MK2",
         Material.RED_STAINED_GLASS,
-        "&cNether Growth Chamber MK2",
+        "&c下界培育仓 MK2",
         "",
-        "&fAutomatically grows &cnether &fplants.",
+        "&f让&c下界作物&f自动生长",
         "",
-        "&c3x production.",
+        "&c3倍生长速度",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(3),
         LoreBuilderDynamic.powerPerSecond(128)
@@ -273,10 +274,10 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_OCEAN = new SlimefunItemStack("GROWTH_CHAMBER_OCEAN",
     Material.CYAN_STAINED_GLASS,
-        "&bOcean Growth Chamber",
+        "&b海洋培育仓",
         "",
-        "&fAutomatically grows &9water &fplants.",
-        "Can revive dead coral!",
+        "&f让&9海洋植物&f自动生长",
+        "&f&o可以复活失活的珊瑚!",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
@@ -285,12 +286,12 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack GROWTH_CHAMBER_OCEAN_MK2 = new SlimefunItemStack("GROWTH_CHAMBER_OCEAN_MK2",
         Material.LIGHT_BLUE_STAINED_GLASS,
-        "&bOcean Growth Chamber MK2",
+        "&b海洋培育仓 MK2",
         "",
-        "&fAutomatically grows &9water &fplants.",
-        "Can revive dead coral!",
+        "&f让&9海洋植物&f自动生长",
+        "&f&o可以复活失活的珊瑚!",
         "",
-        "&c3x production.",
+        "&c3倍生长速度",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(3),
         LoreBuilderDynamic.powerPerSecond(128)
@@ -298,9 +299,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack ANTIGRAVITY_BUBBLE = new SlimefunItemStack("ANTIGRAVITY_BUBBLE",
         Material.OBSIDIAN,
-        "&6Antigravity Bubble",
+        "&6反重力泡泡",
         "",
-        "&f Creative Flight within an 45 block area",
+        "&f可以在周围45格范围内提供创造模式一样的飞行能力",
         "",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(128)
@@ -308,9 +309,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack WEATHER_CONTROLLER = new SlimefunItemStack("WEATHER_CONTROLLER",
         Material.BLUE_STAINED_GLASS,
-        "&6Weather Controller",
+        "&6天气控制仪",
         "",
-        "&fControls the weather when given a key item.",
+        "&f使用特定的物品来控制天气",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(32)
@@ -318,29 +319,29 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack POTION_SPRINKLER = new SlimefunItemStack("POTION_SPRINKLER",
         new CustomItem(SkullItem.fromHash("8d302104180cb79d5f4cf423649ddfa8ffb31a1875fa02a983cd248c72dfb0ea")),
-        "&6Potion Sprinkler",
+        "&6药水喷洒器",
         "",
-        "&fRanged Multiple person potion effect applier.",
+        "&f向附近的所有玩家提供药水效果",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(32)
     );
-    
+
     public static final SlimefunItemStack BARBED_WIRE = new SlimefunItemStack("BARBED_WIRE",
         new CustomItem(SkullItem.fromHash("b2ac6c219004d82dfa627ffab664f29c53ecc112d91c9d7a9c915c426832412")),
-        "&6Barbed Wire",
+        "&6铁丝网",
         "",
-        "&fPushes mobs away in a radius.",
+        "&f推开范围内的怪物",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(16)
-    );        
-    
+    );
+
     public static final SlimefunItemStack MATERIAL_HIVE = new SlimefunItemStack("MATERIAL_HIVE",
         Material.BEEHIVE,
-        "&6Material Hive",
+        "&6材料蜂巢",
         "",
-        "&fUsing power and bees, slowly generates materials.",
+        "&f使用电力与蜜蜂，缓慢生产材料",
         "",
         LoreBuilder.radioactive(Radioactivity.HIGH),
         "",
@@ -350,9 +351,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack WIRELESS_CHARGER = new SlimefunItemStack("WIRELESS_CHARGER",
         Material.CLAY,
-        "&6Wireless Charger",
+        "&6无线充电站",
         "",
-        "&fWireless charge items in your inventory",
+        "&f给附近玩家的物品栏中的所有物品充电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(16)
@@ -360,9 +361,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack SEED_PLUCKER = new SlimefunItemStack("SEED_PLUCKER",
         Material.ORANGE_STAINED_GLASS,
-        "&6Seed Plucker",
+        "&6种子提取器",
         "",
-        "&fPull seeds out of plant based items.",
+        "&f从作物中提取相应的种子",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(32)
@@ -370,9 +371,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack BANDAID_MANAGER = new SlimefunItemStack("BANDAID_MANAGER",
         Material.LAPIS_BLOCK,
-        "&6Item Band Manager",
+        "&6物品模组管理器",
         "",
-        "&fManages Item Bands",
+        "&f管理物品模组",
         "",
         LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE),
         LoreBuilderDynamic.powerPerSecond(48)
@@ -380,21 +381,22 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack ORECHID = new SlimefunItemStack("ORECHID",
         Material.END_ROD,
-        "&6Orechid",
+        "&6矿物花",
         "",
-        "&fUsing Stone or Netherack and power, it makes their respective ores.",
+        "&f使用电力,让附近的石头/下界岩变成对应的矿石",
         "",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
-        LoreBuilderDynamic.power(1024, " per block converted.")
+        LoreBuilderDynamic.power(1024, " 每个方块转换")
    );
 
     public static final SlimefunItemStack WIRELESS_ENERGY_POINT = new SlimefunItemStack("WIRELESS_ENERGY_POINT",
         new CustomItem(SkullItem.fromHash("335a21d95e8597759fb259c951ea68e1ad3374ca41e56ef126ffabfe03c1e0")),
-        "&6Wireless Energy Point",
+        "&6无线能源节点",
         "",
-        "&fTransfers Energy Wirelessly",
-        "&ffrom a Wireless Energy Bank",
-        "Right Click on the Wireless Energy Bank to connect!",
+        "&f从无线能源库",
+        "&f无线传输能源",
+        "",
+        "&e右键点击&6无线能源库&7与其绑定",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.powerBuffer(5120),
@@ -403,10 +405,10 @@ public class DynaTechItems {
     );
     public static final SlimefunItemStack WIRELESS_ENERGY_BANK = new SlimefunItemStack("WIRELESS_ENERGY_BANK",
         Material.SNOW_BLOCK,
-        "&6Wireless Energy Bank",
+        "&6无线能源库",
         "",
-        "&fStores power for an",
-        "&fWireless Energy Point to use.",
+        "&f存储能源",
+        "&f以供无线能源节点使用",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.CAPACITOR),
         LoreBuilder.powerBuffer(10240),
@@ -416,51 +418,53 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack WIRELESS_ITEM_INPUT = new SlimefunItemStack("WIRELESS_ITEM_INPUT",
         new CustomItem(SkullItem.fromHash("abb55560c695d976b346e188d3df2bcd8c5aa32b933141a9715c42f64cb6cee")),
-        "&6Wireless Item Input",
+        "&6无线物品输入节点",
         "",
-        "&fTransfers Items Wirelessly",
-        "&f to Wireless Item Output",
+        "&f无线传输物品",
+        "&f到一个&7无线物品输出节点",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.powerBuffer(1024),
-        LoreBuilderDynamic.power(8, " per stack of items"),
+        LoreBuilderDynamic.power(8, " 每组物品"),
         ""
     );
 
     public static final SlimefunItemStack WIRELESS_ITEM_OUTPUT = new SlimefunItemStack("WIRELESS_ITEM_OUTPUT",
         new CustomItem(SkullItem.fromHash("c510d9b61ca333d2946c61a26cb17e374d4adb573b46afdebaf89f65ba5d4ae2")),
-        "&6Wireless Item Output",
+        "&6无线物品输出节点",
         "",
-        "&fTransfer Items Wirelessly",
-        "&ffrom Wireless Item Input",
-        "Right Click on the Wireless Item Output to connect!",
+        "&f从&6无线物品输入节点",
+        "&f无线传输物品",
         "",
-        LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE), 
+        "&e右键点击&6无线物品输入节点&7与其绑定",
+        "",
+        LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.powerBuffer(1024),
-        LoreBuilderDynamic.power(8, " per stack of items"),
+        LoreBuilderDynamic.power(8, " 每组物品"),
         ""
     );
 
     public static final SlimefunItemStack TESSERACT = new SlimefunItemStack("TESSERACT",
-        Material.PURPUR_BLOCK, 
-        "&6Tesseract",
+        Material.PURPUR_BLOCK,
+        "&6光学传输器",
         "",
-        "&fTransfers Items and Energy Wirelessly",
-        "&fThese are even 2-way!",
-        "Right Click on another Tesseract to connect!",
+        "&f无线传输物品与能源",
+        "&f可以双向传输",
+        "",
+        "&7使用&6光学绑定仪&7来绑定&6光学传输器",
         "",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
         LoreBuilder.powerBuffer(65535),
         LoreBuilderDynamic.powerPerSecond(1024),
-        ""  
+        ""
     );
 
     //Generators
     public static final SlimefunItemStack WATER_MILL = new SlimefunItemStack("WATER_MILL",
         Material.COBBLESTONE_WALL,
-        "&6Hydro Generator",
+        "&6水轮发电机",
         "",
-        "&fCreates energy from flowing water",
+        "&f使用水力发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(128),
@@ -469,9 +473,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack WATER_TURBINE = new SlimefunItemStack("WATER_TURBINE",
         Material.PRISMARINE_WALL,
-        "&6Hydro Turbine",
+        "&6水力涡轮发电机",
         "",
-        "&fCreates energy from flowing water",
+        "&f使用水力发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(512),
@@ -480,9 +484,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack DRAGON_GENERATOR = new SlimefunItemStack("DRAGON_GENERATOR",
         Material.GRAY_CONCRETE,
-        "&6Dragon Egg Generator",
+        "&6龙蛋发电机",
         "",
-        "&fCreates energy from the warmth of a Dragon Egg",
+        "&f从龙蛋的温暖中产生能源",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(512),
@@ -491,21 +495,21 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack CHIPPING_GENERATOR = new SlimefunItemStack("CHIPPING_GENERATOR",
         Material.SPRUCE_WOOD,
-        "&6Chipping Generator",
+        "&6粉碎发电机",
         "",
-        "&fCreates energy from broken items",
-        "&f(Durability based items)",
+        "&f使用磨损的物品来发电",
+        "&f(有耐久度的物品)",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(256),
-        LoreBuilderDynamic.power(8, " per durability point")
+        LoreBuilderDynamic.power(8, " 每点耐久度")
     );
 
     public static final SlimefunItemStack CULINARY_GENERATOR = new SlimefunItemStack("CULINARY_GENERATOR",
         Material.BLAST_FURNACE,
-        "&6Culinary Generator",
+        "&6烹饪发电机",
         "",
-        "&fCreates energy from food energy",
+        "&f使用食物来发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(256),
@@ -514,9 +518,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack STARDUST_REACTOR = new SlimefunItemStack("STARDUST_REACTOR",
         Material.IRON_BLOCK,
-        "&6Stardust Reactor",
+        "&6星尘反应堆",
         "",
-        "&6Uses Star Dust to produce larges amount of power.",
+        "&6使用星尘产生大量的能源",
         "",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.GENERATOR),
         LoreBuilder.powerBuffer(32768),

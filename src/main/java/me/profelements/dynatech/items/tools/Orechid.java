@@ -1,13 +1,5 @@
 package me.profelements.dynatech.items.tools;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.inventory.ItemStack;
-
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
@@ -15,6 +7,13 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.collections.RandomizedSet;
 import me.profelements.dynatech.DynaTech;
 import me.profelements.dynatech.items.electric.abstracts.AMachine;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //I feel like this can somehow be much better :O
 
@@ -30,35 +29,6 @@ public class Orechid extends AMachine implements RecipeDisplayItem {
     public Orechid(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
-
-    @Override
-    public void tick(Block b) {
-        if (DynaTech.getInstance().getTickInterval() % 10 == 0) {
-            for (BlockFace relative : BlockFace.values()) {
-                if (getCharge(b.getLocation()) < getEnergyConsumption()) {
-                    break;
-                }
-    
-                if (relative == BlockFace.UP || relative == BlockFace.DOWN) {
-                    continue;
-                }
-                
-                Block relBlock = b.getRelative(relative);
-    
-                if (relBlock.getType() == Material.STONE) {
-                    DynaTech.runSync(()-> relBlock.setType(getOverWorldOres().getRandom()));
-                    removeCharge(b.getLocation(), getEnergyConsumption());
-    
-                } else if (relBlock.getType() == Material.NETHERRACK) {
-                    DynaTech.runSync(()-> relBlock.setType(getNetherOres().getRandom()));
-                    removeCharge(b.getLocation(), getEnergyConsumption());
-    
-                }
-            }        
-        }
-    }
-
-
 
     private static final RandomizedSet<Material> getOverWorldOres() {
         OVERWORLD_ORES.add(Material.COAL_ORE, 3);
@@ -80,6 +50,33 @@ public class Orechid extends AMachine implements RecipeDisplayItem {
         NETHER_ORES.add(Material.BLACKSTONE, 5);
 
         return NETHER_ORES;
+    }
+
+    @Override
+    public void tick(Block b) {
+        if (DynaTech.getInstance().getTickInterval() % 10 == 0) {
+            for (BlockFace relative : BlockFace.values()) {
+                if (getCharge(b.getLocation()) < getEnergyConsumption()) {
+                    break;
+                }
+
+                if (relative == BlockFace.UP || relative == BlockFace.DOWN) {
+                    continue;
+                }
+
+                Block relBlock = b.getRelative(relative);
+
+                if (relBlock.getType() == Material.STONE) {
+                    DynaTech.runSync(() -> relBlock.setType(getOverWorldOres().getRandom()));
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+
+                } else if (relBlock.getType() == Material.NETHERRACK) {
+                    DynaTech.runSync(() -> relBlock.setType(getNetherOres().getRandom()));
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+
+                }
+            }
+        }
     }
 
     @Override
@@ -113,5 +110,5 @@ public class Orechid extends AMachine implements RecipeDisplayItem {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.WITHER_ROSE);
     }
-    
+
 }

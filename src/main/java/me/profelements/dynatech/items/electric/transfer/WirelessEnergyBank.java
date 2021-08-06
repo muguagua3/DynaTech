@@ -1,16 +1,15 @@
 package me.profelements.dynatech.items.electric.transfer;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import org.bukkit.inventory.ItemStack;
-
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class WirelessEnergyBank extends SlimefunItem implements EnergyNetComponent {
 
@@ -33,5 +32,5 @@ public class WirelessEnergyBank extends SlimefunItem implements EnergyNetCompone
     public int getCapacity() {
         return capacity;
     }
-    
+
 }

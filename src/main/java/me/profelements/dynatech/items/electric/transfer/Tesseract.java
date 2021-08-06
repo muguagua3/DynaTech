@@ -1,20 +1,5 @@
 package me.profelements.dynatech.items.electric.transfer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
@@ -38,12 +23,26 @@ import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import me.profelements.dynatech.DynaTech;
 import me.profelements.dynatech.DynaTechItems;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class Tesseract extends SlimefunItem implements EnergyNetProvider {
     public static final NamespacedKey WIRELESS_LOCATION_KEY = new NamespacedKey(DynaTech.getInstance(), "tesseract-pair-location");
-	private final int capacity;
+    private final int capacity;
     private final int energyRate;
-            
+
     public Tesseract(Category category, int capacity, int energyRate, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
@@ -51,8 +50,8 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
         this.energyRate = energyRate;
 
         addItemHandler(onBlockBreak());
-        
-        new BlockMenuPreset("TESSERACT", "Tesseract") {
+
+        new BlockMenuPreset("TESSERACT", "&6光学传输器") {
 
             @Override
             public void init() {
@@ -60,13 +59,13 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
             }
 
             @Override
-            public boolean canOpen(Block b, Player p) { 
+            public boolean canOpen(Block b, Player p) {
                 return p.hasPermission("slimefun.inventory.bypass") || SlimefunPlugin.getProtectionManager().hasPermission(p, b.getLocation(), ProtectableAction.INTERACT_BLOCK);
 
-                
+
             }
 
-            @Override 
+            @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
                 return new int[0];
             }
@@ -77,47 +76,72 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
                     return getInputSlots();
                 } else {
                     return getOutputSlots();
-                } 
+                }
             }
         };
     }
 
+    public static void setItemLore(ItemStack item, Location l) {
+        ItemMeta im = item.getItemMeta();
+        List<String> lore = im.getLore();
+        for (int i = 0; i < lore.size(); i++) {
+            if (lore.get(i).contains("绑定位置: ")) {
+                lore.remove(i);
+            }
+        }
+
+        lore.add(ChatColor.WHITE + ": " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
+
+        im.setLore(lore);
+        item.setItemMeta(im);
+
+    }
+
+    public static String LocationToString(Location l) {
+        return l.getWorld().getName() + ";" + l.getBlockX() + ";" + l.getBlockY() + ";" + l.getBlockZ();
+    }
+
+    public static final Location StringToLocation(String locString) {
+        String[] locComponents = locString.split(";");
+        return new Location(Bukkit.getWorld(locComponents[0]), Double.parseDouble(locComponents[1]), Double.parseDouble(locComponents[2]), Double.parseDouble(locComponents[3]));
+    }
+
     @Override
     public void preRegister() {
-        addItemHandler(new BlockTicker(){
+        addItemHandler(new BlockTicker() {
 
-			@Override
+            @Override
             public boolean isSynchronized() {
-				return false;
-			}
+                return false;
+            }
 
-			@Override
-			public void tick(Block block, SlimefunItem sfItem, Config data) {
+            @Override
+            public void tick(Block block, SlimefunItem sfItem, Config data) {
                 Tesseract.this.tick(block);
-				
-			}
 
-             
-       });
+            }
+
+
+        });
     }
 
     private ItemHandler onBlockBreak() {
         return new BlockBreakHandler(false, false) {
 
-			@Override
-			public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
+            @Override
+            public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
                 BlockMenu inv = BlockStorage.getInventory(event.getBlock());
-                
+
                 if (inv != null) {
                     inv.dropItems(event.getBlock().getLocation(), getInputSlots());
                     inv.dropItems(event.getBlock().getLocation(), getOutputSlots());
-    
+
                 }
 
 
-				BlockStorage.clearBlockInfo(event.getBlock().getLocation());
-			}
-            
+                BlockStorage.clearBlockInfo(event.getBlock().getLocation());
+            }
+
         };
     }
 
@@ -125,20 +149,20 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
         String wirelessLocation = BlockStorage.getLocationInfo(b.getLocation(), "tesseract-pair-location");
         if (wirelessLocation != null) {
             sendItemsAndCharge(b, wirelessLocation);
-            
+
         }
     }
 
     private void sendItemsAndCharge(Block b, String wirelessLocation) {
         Location tesseractPair = StringToLocation(wirelessLocation);
-    
+
         // Note: You should probably also see if the Future from getChunkAtAsync is finished here.
         // you don't really want to possibly trigger the chunk to load in another thread twice.
         if (!tesseractPair.getWorld().isChunkLoaded(tesseractPair.getBlockX() >> 4, tesseractPair.getBlockZ() >> 4)) {
             CompletableFuture<Chunk> chunkLoad = PaperLib.getChunkAtAsync(tesseractPair);
             if (!chunkLoad.isDone()) {
                 return;
-            } 
+            }
         }
 
         if (tesseractPair != null && BlockStorage.checkID(tesseractPair) != null && BlockStorage.checkID(tesseractPair).equals(DynaTechItems.TESSERACT.getItemId())) {
@@ -146,16 +170,16 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
             BlockMenu output = BlockStorage.getInventory(b);
 
             updateKnowledgePane(output, getCharge(b.getLocation()));
-            
+
             for (int i : getInputSlots()) {
                 ItemStack itemStack = input.getItemInSlot(i);
-                
-                if (itemStack != null && itemStack.getType() != Material.AIR && InvUtils.fitAll(output.toInventory(), new ItemStack[] {itemStack}, getOutputSlots())) {
+
+                if (itemStack != null && itemStack.getType() != Material.AIR && InvUtils.fitAll(output.toInventory(), new ItemStack[]{itemStack}, getOutputSlots())) {
                     output.pushItem(itemStack, getOutputSlots());
                     itemStack.setAmount(0);
                 }
             }
-            
+
         }
 
     }
@@ -163,24 +187,24 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
     @Override
     public int getGeneratedOutput(Location l, Config data) {
         String tesseractPairLocation = BlockStorage.getLocationInfo(l, "tesseract-pair-location");
-    
+
         int chargedNeeded = getCapacity() - getCharge(l);
-    
-        if(chargedNeeded != 0 && tesseractPairLocation != null) {
+
+        if (chargedNeeded != 0 && tesseractPairLocation != null) {
             Location tesseractPair = StringToLocation(tesseractPairLocation);
-    
+
             // Note: You should probably also see if the Future from getChunkAtAsync is finished here.
             // you don't really want to possibly trigger the chunk to load in another thread twice.
             if (!tesseractPair.getWorld().isChunkLoaded(tesseractPair.getBlockX() >> 4, tesseractPair.getBlockZ() >> 4)) {
                 CompletableFuture<Chunk> chunkLoad = PaperLib.getChunkAtAsync(tesseractPair);
                 if (!chunkLoad.isDone()) {
                     return 0;
-                } 
+                }
             }
-    
+
             if (tesseractPair != null && BlockStorage.checkID(tesseractPair) != null && BlockStorage.checkID(tesseractPair).equals(DynaTechItems.TESSERACT.getItemId())) {
                 int BankCharge = getCharge(tesseractPair);
-                
+
                 if (BankCharge > chargedNeeded && BankCharge != 0) {
                     if (chargedNeeded > getEnergyRate()) {
                         removeCharge(tesseractPair, getEnergyRate());
@@ -196,12 +220,13 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
                     removeCharge(tesseractPair, BankCharge);
                     return BankCharge;
                 }
-                
+
             }
-    
+
         }
         return 0;
     }
+
     private void updateKnowledgePane(BlockMenu menu, int currentCharge) {
         ItemStack knowledgePane = menu.getItemInSlot(4);
         ItemMeta im = knowledgePane.getItemMeta();
@@ -209,8 +234,8 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
 
         lore.clear();
         lore.add(" ");
-        lore.add(ChatColor.WHITE +"Current Power: " + currentCharge);
-        lore.add(ChatColor.WHITE +"Current Status: " + ChatColor.RED + "CONNECTED");
+        lore.add(ChatColor.WHITE + "电力: " + currentCharge + "J");
+        lore.add(ChatColor.GREEN + "已连接");
         knowledgePane.setType(Material.RED_STAINED_GLASS_PANE);
 
         im.setLore(lore);
@@ -222,27 +247,27 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
         preset.drawBackground(ChestMenuUtils.getBackground(), getBorder());
         preset.drawBackground(ChestMenuUtils.getInputSlotTexture(), getInputBorder());
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), getOutputBorder());
-        preset.addItem(4, new CustomItem(Material.PURPLE_STAINED_GLASS_PANE, "&fKnowledge Pane", "&fCurrent Power: Unknown", "&fCurrent Status: NOT CONNECTED"), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(4, new CustomItem(Material.PURPLE_STAINED_GLASS_PANE, "&b当前状态", "&f电力: 未知", "&c未连接"), ChestMenuUtils.getEmptyClickHandler());
     }
 
-    
     public int[] getBorder() {
-        return new int[] {13,22,31,49,40};
+        return new int[]{13, 22, 31, 49, 40};
     }
 
     public int[] getInputBorder() {
-        return new int[] {0,1,2,3,45,46,47,48};
+        return new int[]{0, 1, 2, 3, 45, 46, 47, 48};
     }
 
     public int[] getOutputBorder() {
-        return new int[] {5,6,7,8,50,51,52,53};
+        return new int[]{5, 6, 7, 8, 50, 51, 52, 53};
     }
+
     public int[] getInputSlots() {
-        return new int[] {9,10,11,12,18,19,20,21,27,28,29,30,36,37,38,39};  
+        return new int[]{9, 10, 11, 12, 18, 19, 20, 21, 27, 28, 29, 30, 36, 37, 38, 39};
     }
 
     public int[] getOutputSlots() {
-        return new int[] {14,15,16,17,23,24,25,26,32,33,34,35,41,42,43,44};
+        return new int[]{14, 15, 16, 17, 23, 24, 25, 26, 32, 33, 34, 35, 41, 42, 43, 44};
     }
 
     @Override
@@ -252,30 +277,5 @@ public class Tesseract extends SlimefunItem implements EnergyNetProvider {
 
     public int getEnergyRate() {
         return energyRate;
-    }
-
-    public static void setItemLore(ItemStack item, Location l) {
-        ItemMeta im = item.getItemMeta();
-        List<String> lore = im.getLore();
-        for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("Location: ")) {
-                lore.remove(i);
-            } 
-        }
-
-        lore.add(ChatColor.WHITE + "Location: " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
-
-        im.setLore(lore);
-        item.setItemMeta(im);
-        
-    }
-
-    public static String LocationToString(Location l) {
-        return l.getWorld().getName()+";"+l.getBlockX()+";"+l.getBlockY()+";"+l.getBlockZ();
-    }
-
-    public static final Location StringToLocation(String locString) {
-        String[] locComponents = locString.split(";");
-        return new Location(Bukkit.getWorld(locComponents[0]), Double.parseDouble(locComponents[1]), Double.parseDouble(locComponents[2]), Double.parseDouble(locComponents[3]));
     }
 }

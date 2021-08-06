@@ -20,7 +20,7 @@ public class GrowthChamberEnd extends AMachine {
 
         registerRecipe(9, new ItemStack[] {new ItemStack(Material.CHORUS_FLOWER)}, new ItemStack[] {new ItemStack(Material.CHORUS_FLOWER , 2), new ItemStack(Material.CHORUS_FRUIT, 8)});
 
-    } 
+    }
 
     @Override
     public ItemStack getProgressBar() {

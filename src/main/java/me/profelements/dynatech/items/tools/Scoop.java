@@ -31,7 +31,7 @@ public class Scoop extends SlimefunItem implements Rechargeable, NotPlaceable {
             }
 
             Entity entity = e.getRightClicked();
-            
+
             if (e.isCancelled() || !SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), entity.getLocation(), ProtectableAction.INTERACT_ENTITY)) {
                 return;
             }
@@ -39,7 +39,7 @@ public class Scoop extends SlimefunItem implements Rechargeable, NotPlaceable {
             Player p = e.getPlayer();
 
             if (entity instanceof Bee) {
-                
+
                 entity.getWorld().dropItemNaturally(entity.getLocation(), DynaTechItems.BEE);
                 entity.remove();
                 removeItemCharge(item, 8);
@@ -47,12 +47,12 @@ public class Scoop extends SlimefunItem implements Rechargeable, NotPlaceable {
                 p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
             }
         };
-        
+
     }
 
     @Override
     public float getMaxItemCharge(ItemStack item) {
         return 512;
     }
-        
+
 }

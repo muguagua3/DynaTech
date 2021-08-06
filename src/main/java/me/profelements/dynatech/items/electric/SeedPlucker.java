@@ -32,7 +32,7 @@ public class SeedPlucker extends AMachine {
         registerRecipe(10, new ItemStack[] {new ItemStack(Material.PUMPKIN)}, new ItemStack[] {new ItemStack(Material.PUMPKIN_SEEDS)});
         registerRecipe(10, new ItemStack[] {new ItemStack(Material.MELON_SLICE)}, new ItemStack[] {new ItemStack(Material.MELON_SEEDS)});
     }
-    
+
     @Override
     public MachineRecipe findNextRecipe(BlockMenu inv) {
         if (DynaTech.isExoticGardenInstalled() && exoticGardenIntegration.getValue()) {
@@ -58,7 +58,7 @@ public class SeedPlucker extends AMachine {
             }
         }
         return super.findNextRecipe(inv);
-    } 
+    }
 
     @Override
     public ItemStack getProgressBar() {
@@ -69,5 +69,5 @@ public class SeedPlucker extends AMachine {
     public String getMachineIdentifier() {
         return "SEED_PLUCKER";
     }
-    
+
 }

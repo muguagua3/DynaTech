@@ -66,7 +66,7 @@ public class GrowthChamberOcean extends AMachine {
 
 
     }
-    
+
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.CONDUIT);

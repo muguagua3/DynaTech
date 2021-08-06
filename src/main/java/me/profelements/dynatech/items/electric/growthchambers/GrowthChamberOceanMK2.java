@@ -12,11 +12,11 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class GrowthChamberOceanMK2 extends AMachine {
-    
+
     private static int[] BORDER = new int[] {};
     private static int[] BORDER_IN = new int[] {0,8,9,10,11,12,14,15,16,17};
     private static int[] BORDER_OUT = new int[] {18,19,20,21,22,23,24,25,26,27,35,36,44,45,53};
-    
+
     public GrowthChamberOceanMK2(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
@@ -77,7 +77,7 @@ public class GrowthChamberOceanMK2 extends AMachine {
     public boolean isGraphical() {
         return true;
     }
-    
+
     @Override
     public String getMachineIdentifier() {
         return "GROWTH_CHAMBER_OCEAN_MK2";
@@ -90,10 +90,10 @@ public class GrowthChamberOceanMK2 extends AMachine {
         borders.add(BORDER);
         borders.add(BORDER_IN);
         borders.add(BORDER_OUT);
-        
+
         return borders;
     }
-    
+
     @Override
     public int[] getInputSlots() {
         return new int[] {1,2,3,4,5,6,7};
@@ -107,10 +107,10 @@ public class GrowthChamberOceanMK2 extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.CONDUIT);
     }
-    
+
     @Override
     public int getProgressBarSlot() {
         return 13;
     }
-    
+
 }

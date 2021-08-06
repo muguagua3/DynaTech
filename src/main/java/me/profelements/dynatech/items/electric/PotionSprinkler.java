@@ -66,7 +66,7 @@ public class PotionSprinkler extends AMachine {
                             DynaTech.runSync(() -> applyPotionEffect(pe, p));
                             enabledPlayers.add(p.getUniqueId());
                         }
-                        
+
                     }
                 }
             }
@@ -105,10 +105,10 @@ public class PotionSprinkler extends AMachine {
         borders.add(BORDER);
         borders.add(BORDER_IN);
         borders.add(BORDER_OUT);
-        
+
         return borders;
     }
-    
+
     @Override
     public int[] getInputSlots() {
         return new int[] {13};
@@ -123,7 +123,7 @@ public class PotionSprinkler extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.GLASS_BOTTLE);
     }
-    
+
     @Override
     public int getProgressBarSlot() {
         return 4;

@@ -37,7 +37,7 @@ public class BandaidManager extends AMachine {
 
                         return new MachineRecipe(30, new ItemStack[] {target, itemBand}, new ItemStack[] {result});
                     }
-                    
+
                 }
             } else if (ItemBand.containsItemBand(target)) {
                 String id = PersistentDataAPI.getString(target.getItemMeta(), ItemBand.KEY);
@@ -64,5 +64,5 @@ public class BandaidManager extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.PHANTOM_MEMBRANE);
     }
-    
+
 }

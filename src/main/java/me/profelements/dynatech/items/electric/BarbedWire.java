@@ -27,14 +27,14 @@ public class BarbedWire extends AMachine {
     public BarbedWire(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
     }
-    
-    
+
+
     @Override
     public void tick(Block b) {
         if (getCharge(b.getLocation()) < getEnergyConsumption())  {
             return;
         }
-        
+
         DynaTech.runSync(()->sendEntitiesFlying(b.getLocation(), b.getWorld()));
         removeCharge(b.getLocation(), getEnergyConsumption());
 
@@ -47,7 +47,7 @@ public class BarbedWire extends AMachine {
             Vector tempV = e.getVelocity();
             if (e.getType() != EntityType.PLAYER && e.getType() != EntityType.ARMOR_STAND && e.getType() != EntityType.DROPPED_ITEM && !shotEntities.contains(e)) {
                 Vector tempV2 = tempV.multiply(-1).multiply(1.2).add(new Vector(1, 0.7, 1));
-                
+
                 if (tempV2.getX() >= MAX_DIRECTION_VEL || tempV2.getY() >= MAX_DIRECTION_VEL || tempV2.getZ() >= MAX_DIRECTION_VEL) {
                     tempV2 = new Vector(0, 0, 0);
                 }
@@ -55,7 +55,7 @@ public class BarbedWire extends AMachine {
 
                 if (NumberConversions.isFinite(tempV2.getX()) && NumberConversions.isFinite(tempV2.getY()) && NumberConversions.isFinite(tempV2.getZ())) {
                     e.setVelocity(tempV2);
-                    shotEntities.add(e);  
+                    shotEntities.add(e);
                 } else if (NumberConversions.isFinite(tempV.getX()) && NumberConversions.isFinite(tempV.getY()) && NumberConversions.isFinite(tempV.getZ())) {
                     e.setVelocity(tempV);
                 } else {
@@ -66,8 +66,8 @@ public class BarbedWire extends AMachine {
             if (shotEntities.contains(e) && waitTime > 8) {
                 e.setVelocity(tempV);
             }
-            
-			waitTime++;   
+
+			waitTime++;
         }
     }
 
@@ -87,5 +87,5 @@ public class BarbedWire extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.IRON_BARS);
     }
-    
+
 }

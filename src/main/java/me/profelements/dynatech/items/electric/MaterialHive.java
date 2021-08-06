@@ -25,7 +25,7 @@ public class MaterialHive extends AMachine implements Radioactive {
     private static final int[] BORDER = new int[] {0,1,2,6,7,8,31,36,37,38,39,40,41,42,43,44};
     private static final int[] BORDER_IN = new int[] {9,10,11,12,18,21,27,28,29,30};
     private static final int[] BORDER_OUT = new int[] {14,15,16,17,23,26,32,33,34,35};
-    
+
     private static final int[] BORDER_KEY = new int[] {3,5,13};
     private static final SlimefunItemStack UI_KEY = new SlimefunItemStack("_UI_KEY", Material.LIGHT_BLUE_STAINED_GLASS_PANE, " ");
 
@@ -33,7 +33,7 @@ public class MaterialHive extends AMachine implements Radioactive {
 
     public final ItemSetting<List<String>> vanillaItemsAccepted = new ItemSetting<>(this, "vanilla-items-accepted", getDefaultAllowedVanillaItems());
     public final ItemSetting<List<String>> slimefunItemsAccepted = new ItemSetting<>(this, "slimefun-items-accepted", getDefaultAllowedSlimefunItems());
-    
+
     public MaterialHive(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
         addItemSetting(vanillaItemsAccepted, slimefunItemsAccepted);
@@ -46,38 +46,38 @@ public class MaterialHive extends AMachine implements Radioactive {
             return null;
         }
         ItemStack output;
-        
+
         // check if its a valid key and get output
         SlimefunItem sfItem = SlimefunItem.getByItem(key);
-        
+
         if (sfItem != null && slimefunItemsAccepted.getValue().contains(sfItem.getId())) {
             output = sfItem.getItem().clone();
-            
+
         } else if (vanillaItemsAccepted.getValue().contains(key.getType().toString())) {
             output = new ItemStack(key.getType());
-            
+
         } else {
             return null;
         }
-        
+
         int seconds = 1800;
 
         ItemStack b1 = inv.getItemInSlot(getInputSlots()[0]);
         Bee bee1 = null;
-        
+
         // check 1st bee
         if (b1 != null) {
             SlimefunItem bee = SlimefunItem.getByItem(b1);
             if (bee instanceof Bee) {
                 bee1 = (Bee) bee;
-                
+
                 // subtract time
                 seconds -= bee1.getSpeedMultipler() * b1.getAmount();
             }
         }
-        
+
         ItemStack b2 = inv.getItemInSlot(getInputSlots()[1]);
-        
+
         // check 2nd bee
         if (b2 != null) {
             SlimefunItem bee = SlimefunItem.getByItem(b2);
@@ -86,7 +86,7 @@ public class MaterialHive extends AMachine implements Radioactive {
 
                 // subtract time
                 seconds -= bee2.getSpeedMultipler() * b2.getAmount();
-                
+
                 // if same type and both max stack size, add 32 bees worth of boost
                 if (bee1 == bee2 && b1.getAmount() == 64 && b2.getAmount() == 64) {
                     seconds -= bee1.getSpeedMultipler() * 32;
@@ -102,7 +102,7 @@ public class MaterialHive extends AMachine implements Radioactive {
         super.constructMenu(preset);
         preset.drawBackground(UI_KEY, BORDER_KEY);
     }
-    
+
     @Override
     public List<int[]> getBorders() {
         List<int[]> borders = new ArrayList<>();
@@ -183,7 +183,7 @@ public class MaterialHive extends AMachine implements Radioactive {
         sfItemsAllowed.add("GILDED_IRON");
         sfItemsAllowed.add("NICKEL_INGOT");
         sfItemsAllowed.add("COBALT_INGOT");
-        
+
         //Gems
         sfItemsAllowed.add("SYNTHETIC_DIAMOND");
         sfItemsAllowed.add("SYNTHETIC_EMERALD");
@@ -192,5 +192,5 @@ public class MaterialHive extends AMachine implements Radioactive {
 
         return sfItemsAllowed;
     }
-    
+
 }

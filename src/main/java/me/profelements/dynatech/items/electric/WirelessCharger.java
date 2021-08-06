@@ -36,9 +36,9 @@ public class WirelessCharger extends AMachine {
 
                     if (sfItem instanceof Rechargeable) {
                         Rechargeable rcItem = (Rechargeable) sfItem;
-                        
+
                         if (rcItem.getItemCharge(item) != rcItem.getMaxItemCharge(item)) {
-                            
+
                             removeCharge(b.getLocation(), getEnergyConsumption());
                             rcItem.addItemCharge(item, getEnergyConsumption());
                             p.updateInventory();
@@ -64,5 +64,5 @@ public class WirelessCharger extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.END_ROD);
     }
-    
+
 }

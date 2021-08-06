@@ -29,7 +29,7 @@ public class GrowthChamberNether extends AMachine {
         registerRecipe(30, new ItemStack[] {new ItemStack(Material.WARPED_FUNGUS)}, new ItemStack[] {new ItemStack(Material.WARPED_FUNGUS, 2), new ItemStack(Material.WARPED_STEM, 6)});
 
     }
-    
+
     @Override
     public ItemStack getProgressBar() {
         return new ItemStack(Material.NETHERRACK);

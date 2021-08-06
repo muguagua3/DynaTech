@@ -1,59 +1,76 @@
-# DynaTech
-A set of item and machines that I made to make things easier for me and just for fun.
-Most of these could possibly be overpowered or heavily underpowered.
+# DynaTech 动力科技
 
-**THIS PLUGIN REQUIRES JAVA 11**
+这是一些我设计的物品或机器，有些会让事情变得更加简单，而有些只是用来玩的。其中的许多物品可能过于强大或过于不足。
 
-### [Download](https://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master/)
-[![Build Status](https://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master/badge.svg)](https://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master)
+**此插件需要 Java 11**
 
-## Machines
-- **Auto-Kitchen** - If you have ExoticGarden installed, this machine will become available. It automatically crafts any Kitchen recipe inserted into it.
-- **Growth Chambers** - Automatically grow some plants. We have multiple variants for all your needs. Supports Exotic Garden saplings, plants, and bushes.
-- **Antigravity Bubble** - Temporary creative flight within a 45 block area when powered.
-- **Weather Controller** - Controls the weather when given a key item (Sunflower > Clear, Lilac > Rain, Creeper Head > Thunder).
-- **Potion Sprinkler** - A ranged potion applier, the potions have durability basically. Has a 10 block range.
-- **Barbed Wire** - Pushes mob back in a radius. Has a 9 block range, perfect for mob farms.
-- **Material Hive** - An infinite resource generator, requires Bees and a stack of the output items. Supported Materials are [here](https://github.com/ProfElements/DynaTech/blob/1b6aee96937da31c7bdb84df284392530149ce63/src/main/java/me/profelements/dynatech/items/electric/MaterialHive.java#L169). For the Material Hive, each bee you put in minuses the amount of time it takes to produce the material, so 128 bees is better then 1 bee, please note each type of bee has a different seconds minus amount. Check bee section for more info.
-- **Wireless Charger** - Charges Rechargeable Items in a Players inventory in a 16 block radius around it
-- **Seed Plucker** - Plucks seed from plant-based material, supports Exotic Garden Fruits, but not essences.
-- **Item Band Manager** - Manages the application and ripping of Item Bands.
-- **Orechid** - Changes Stone and Netherack into Overworld and Nether ores respectively
-- **Wireless Energy Bank** - Stores energy to be transfer wirelessly Using the Wireless Energy Point
-- **Wireless Energy Point** - Transfers energy wirelessly using the Energy from the Wireless Energy Bank
-- **Wireless Item Input** - Input point for 1 way wireless item transfer 
-- **Wireless Item Output** - Output Point for 1 way wireless item transfer 
-- **Tesseract** - Two way item and energy transport.
-## Generators
-- **Hydro Generator** - Generates energy from flowing water (Waterlog the generator)
-- **Dragon Egg Generator** - Generates energy from the warmth of a dragon egg. (Place the dragon egg on top)
-- **Chipping Generator** - Generates energy from damaged and or durability based items
-- **Culinary Generator** - Generates energy from food energy, suports Exotic Garden Food in the Food Category.
-- **Stardust Reactor** - Generates energy from Star Dust, and lots of it
+## 下载
 
-## Tools
-- **Picnic Basket** - Its an upgraded Cooler. It can eat any ExoticGarden custom foods, or just regular vanilla foods, it has a configurable blacklist in the items.yml
-- **Electrical Stimulator** - Feed the player for energy. 
-- **Inventory Filter** - Upon item pickup, if item is the same as one in the Inventory Filter's filter it voids the item.
-- **Angel Gem** - Permanent Creative Flight, it has some speed settings.
-- **Scoop** - The only way to get naturals Bees. Scoop them into item form.
-- **Dimensional Home** - Gives you a small home in another dimension to teleport to and from. (it sends to you back to your bed spawn if you are in the dimension.)
-- **Tesseract Binder** - Binds Tesseract in a better manner then binding themselves via direct linking
-- **Portable Fluid Tank** - Holds 16 buckets of any fluid. Can place them back down too 
+**警告**:汉化版DynaTech中部分依赖InfinityExpansion(无尽科技)的功能需配合 [汉化版InfinityExpansion](https://github.com/ybw0014/InfinityExpansion-CN) 才能正常使用，如果你已安装InfinityExpansion，请确保使用的是由本人汉化的版本，对于其他汉化版以及原版不提供任何支持。
 
-## Bees 
-- **Bee** - A Natural Bee, for each one -2 seconds to resource creation time in Material Hive.
-- **Robotic Bee** - A Robotic bee made of magic and scrap parts. -2 seconds to resource creation time in Material Hive.
-- **Advanced Robotic Bee** - An Advanced version of the Robotic Bee. -10 seconds to resource creation time in Material Hive.
+点击这里下载 DynaTech: [下载 DynaTech](https://github.com/ybw0014/DynaTech-CN/actions/workflows/maven.yml)
 
-## Item Bands 
-- **Healthy Item Band** - When applied to armor or weapons gain 4 hearts while wearing or holding the item in your main hand.
-- **Hasty Item Band** - When applied to armor or weapons gain 2 levels of haste while wearing or hold the item in your main hand.
+<p align="center">
+  <a href="https://github.com/ybw0014/DynaTech-CN/actions/workflows/maven.yml">
+    <img src="https://github.com/ybw0014/DynaTech-CN/actions/workflows/maven.yml/badge.svg" alt="Auto Build"/>
+  </a>
+</p>
 
-## Integrations 
- - **Vex Mob Data Card** - If InfinityExpansion is installed then you get a Vex Mob Data Card to help with Ghostly Essence and Vex Gems
+## 机器
+
+- **自动厨房** - 如果你安装了异域花园，该机器将可用。它会自动合成厨房配方。
+- **培育仓** - 自动培育植物。我们有多种类型的培育仓供你选择，支持 ExoticGarden 的灌木丛、植物与树苗。
+- **反重力泡泡** - 通电后可在周围45格范围内提供创造模式一样的飞行能力。
+- **天气控制仪** - 使用特定的物品来控制天气 (向日葵 > 晴天, 丁香 > 雨天, 苦力怕头 > 雷雨天)。
+- **药水喷洒器** - 向附近10格内的所有玩家提供药水效果。
+- **铁丝网** - 可以推开周围9格内的怪物，可用于怪物农场。
+- **材料蜂巢** - 一个无限资源生成器，使用蜜蜂与电力工作。需要在输入栏放入蜜蜂，在上方放入需要生成的**一组**材料。你放入的每只蜜蜂都会减少生产材料所需的时间，所以128只蜜蜂比1只蜜蜂好，请注意每种蜜蜂的秒减量不同。更多信息请查看蜜蜂部分。
+- **无线充电站** - 给附近16格内的玩家的物品栏中的所有物品充电
+- **种子提取器** - 可从作物中提取种子。支持异域花园的水果，但不支持魔法植物。
+- **物品模组管理器** - 安装或卸载物品模组。
+- **矿物花** - 将周围的石头或下界岩转变为对应的主世界/下界矿石。
+- **无线能源库** - 存储能源以供无线能源节点使用。
+- **无线能源节点** - 从无线能源库无线传输能源。
+- **无线物品输入节点** - 单向无线物品传输的输入节点。
+- **无线物品输出节点** - 单向无线物品传输的输出节点。
+- **光学传输器** - 双向的物品与能源传输装置。
+
+## 发电机
+
+- **水力发电机** - 使用水流发电(使用方法:使方块含水)
+- **龙蛋发电机** - 从龙蛋的温暖中产生能源 (在发电机上方放置龙蛋)
+- **粉碎发电机** - 使用有磨损的物品(有耐久度的物品)来发电。
+- **烹饪发电机** - 使用食物来发电，支持异域花园的食物分类中的所有食物。
+- **星尘反应堆** - 使用星尘产生大量的能源。
+
+## 工具
+
+- **野餐篮** - 升级版的冰箱。可以自动消耗任何 ExoticGarden 中的食物或原版食物。在`items.yml`中可以配置无法食用的黑名单。
+- **电力刺激器** - 使用电力自动喂食。
+- **物品栏过滤器** - 如果捡起物品时,该物品已存在于过滤器中,那么该物品就会被丢入虚空。
+- **飞行宝石** - 永久性的创造模式的飞行，有一些速度调整的设定。
+- **勺子** - 捕捉蜜蜂，使其变成物品形态。
+- **异次元之家** - 可以在异次元获得一个小家。使用该物品可以将你传送到异次元之家。如果你身处异次元，你会被传送回主世界的床重生点。
+- **光学绑定仪** - 用于绑定光学传输器。
+- **便携式液体储存罐** - 最多可以存储16桶液体。
+
+## 蜜蜂
+
+- **蜜蜂** - 自然界中的蜜蜂，每只可以在材料蜂巢中减少2秒的资源生成时间。
+- **机械蜜蜂** - 一只使用魔法与机器废料做成的机械蜜蜂，每只可以在材料蜂巢中减少2秒的资源生成时间。
+- **高级机械蜜蜂** - 机械蜜蜂的升级版，每只可以在材料蜂巢中减少10秒的资源生成时间。
+
+## 物品模组
+
+- **物品模组: 生命提升** - 当安装到防具或工具上时，提供生命提升 II 的效果。
+- **物品模组: 急迫** - 当安装到防具或工具上时，提供急迫 II 的效果。
+
+## 集成
+
+ - **恼鬼 生物芯片** - 如果安装了无尽科技，你可以通过恼鬼生物芯片来帮你获得幽灵精华与恼鬼宝石。
 
 ## Credits
+
  [NCBPFluffyBear](https://github.com/ncbpfluffybear) for their autocrafter code since it helped alot with the Auto-Kitchen.
 
  [Mooy1](https://github.com/mooy1) for their hydro generator code so I could figure out how to do waterlogging right.

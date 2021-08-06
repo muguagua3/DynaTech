@@ -53,24 +53,24 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
     @Override
     public int getGeneratedOutput(Location l, Config data) {
         String wirelessBankLocation = BlockStorage.getLocationInfo(l, "wireless-location");
-    
+
         int chargedNeeded = getCapacity() - getCharge(l);
-    
+
         if(chargedNeeded != 0 && wirelessBankLocation != null) {
             Location wirelessEnergyBank = StringToLocation(wirelessBankLocation);
-    
+
             // Note: You should probably also see if the Future from getChunkAtAsync is finished here.
             // you don't really want to possibly trigger the chunk to load in another thread twice.
             if (!wirelessEnergyBank.getWorld().isChunkLoaded(wirelessEnergyBank.getBlockX() >> 4, wirelessEnergyBank.getBlockZ() >> 4)) {
                 CompletableFuture<Chunk> chunkLoad = PaperLib.getChunkAtAsync(wirelessEnergyBank);
                 if (!chunkLoad.isDone()) {
                     return 0;
-                } 
+                }
             }
-    
+
             if (wirelessEnergyBank != null && BlockStorage.checkID(wirelessEnergyBank) != null && BlockStorage.checkID(wirelessEnergyBank).equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId())) {
                 int BankCharge = getCharge(wirelessEnergyBank);
-                
+
                 if (BankCharge > chargedNeeded) {
                     if (chargedNeeded > getEnergyRate()) {
                         removeCharge(wirelessEnergyBank, getEnergyRate());
@@ -79,9 +79,9 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
                     removeCharge(wirelessEnergyBank, chargedNeeded);
                     return chargedNeeded;
                 }
-                
+
             }
-    
+
         }
         return 0;
     }
@@ -92,7 +92,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
             @Override
             public void onRightClick(PlayerRightClickEvent event) {
 
-                Optional<Block> blockClicked = event.getClickedBlock();           
+                Optional<Block> blockClicked = event.getClickedBlock();
                 Optional<SlimefunItem> sfBlockClicked = event.getSlimefunBlock();
                 if (blockClicked.isPresent() && sfBlockClicked.isPresent()) {
                     Location blockLoc = blockClicked.get().getLocation();
@@ -104,13 +104,13 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
                         event.cancel();
                         ItemMeta im = item.getItemMeta();
                         String locationString = LocationToString(blockLoc);
-                        
+
                         PersistentDataAPI.setString(im, WIRELESS_LOCATION_KEY, locationString);
                         item.setItemMeta(im);
                         setItemLore(item, blockLoc);
                     }
-                }   
-            } 
+                }
+            }
         };
     }
 
@@ -118,18 +118,18 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent event) {
-                
-                
+
+
                 Location blockLoc = event.getBlockPlaced().getLocation();
                 ItemStack item = event.getItemInHand();
                 String locationString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
-                
+
                 if (item != null && item.getType() == DynaTechItems.WIRELESS_ENERGY_POINT.getType() && item.hasItemMeta() && locationString != null) {
                     BlockStorage.addBlockInfo(blockLoc, "wireless-location", locationString);
-                    
-                }   
+
+                }
             }
-            
+
         };
     }
 
@@ -140,7 +140,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
 			public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
 				BlockStorage.clearBlockInfo(event.getBlock().getLocation());
 			}
-            
+
         };
     }
 
@@ -157,16 +157,16 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
         ItemMeta im = item.getItemMeta();
         List<String> lore = im.getLore();
         for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("Location: ")) {
+            if (lore.get(i).contains("绑定位置: ")) {
                 lore.remove(i);
-            } 
+            }
         }
 
-        lore.add(ChatColor.WHITE + "Location: " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
+        lore.add(ChatColor.WHITE + "绑定位置: " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
 
         im.setLore(lore);
         item.setItemMeta(im);
-        
+
     }
 
 

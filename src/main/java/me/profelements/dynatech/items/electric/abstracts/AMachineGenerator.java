@@ -116,13 +116,13 @@ public abstract class AMachineGenerator extends SlimefunItem implements RecipeDi
                 if (inv != null) {
                     inv.dropItems(b.getLocation(), getInputSlots());
                     inv.dropItems(b.getLocation(), getOutputSlots());
-    
+
                 }
-    
+
                 processing.remove(b);
                 progress.remove(b);
             }
-            
+
         };
     }
 
@@ -206,7 +206,7 @@ public abstract class AMachineGenerator extends SlimefunItem implements RecipeDi
                 }
 
                 inv.replaceExistingItem(getProgressBarSlot(), new CustomItem(Material.BLACK_STAINED_GLASS_PANE, " "));
-                
+
                 progress.remove(l.getBlock());
                 processing.remove(l.getBlock());
                 return 0;
@@ -226,7 +226,7 @@ public abstract class AMachineGenerator extends SlimefunItem implements RecipeDi
 
             return 0;
         }
-        
+
     }
 
     private boolean isBucket(@Nullable ItemStack item) {
@@ -252,7 +252,7 @@ public abstract class AMachineGenerator extends SlimefunItem implements RecipeDi
     }
 
     protected void registerDefaultFuelTypes() {}
-    
+
     public void registerFuel(@Nonnull MachineFuel fuel) {
         Validate.notNull(fuel, "Machine fuel cannot be null.");
         fuelTypes.add(fuel);
@@ -272,9 +272,9 @@ public abstract class AMachineGenerator extends SlimefunItem implements RecipeDi
             ItemStack item = fuel.getInput().clone();
             ItemMeta im = item.getItemMeta();
             List<String> lore = new ArrayList<>();
-            lore.add(ChatColors.color("&8\u21E8 &7Lasts " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
+            lore.add(ChatColors.color("&8\u21E8 &7持续时间 " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
             lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7" + getEnergyProduction() * 2) + " J/s");
-            lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7" + fuel.getTicks() * getEnergyProduction()) + " J in total");
+            lore.add(ChatColors.color("&8\u21E8 &e\u26A1 &7最大存储量: " + fuel.getTicks() * getEnergyProduction()) + " J");
             im.setLore(lore);
             item.setItemMeta(im);
             list.add(item);

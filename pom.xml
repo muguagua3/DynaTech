@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.profelements</groupId>
     <artifactId>DynaTech</artifactId>
-    <version>1.0.0</version>
+    <version>DEV-132-zh_CN</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -36,7 +36,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.name} v${project.version}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 
@@ -110,9 +110,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.mooy1</groupId>
-            <artifactId>InfinityExpansion</artifactId>
-            <version>9d5d3cecc0</version>
+            <groupId>com.github.ybw0014</groupId>
+            <artifactId>InfinityExpansion-CN</artifactId>
+            <version>2ec6dd8608</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -128,9 +128,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Slimefun-Addon-Community</groupId>
+            <groupId>com.github.ybw0014</groupId>
             <artifactId>extrautils</artifactId>
-            <version>c852937de5</version>
+            <version>921521c111</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

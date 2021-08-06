@@ -76,7 +76,7 @@ public class GrowthChamber extends AMachine {
         registerRecipe(30, new ItemStack[] {new ItemStack(Material.ACACIA_SAPLING)}, new ItemStack[] {new ItemStack(Material.ACACIA_SAPLING, 3), new ItemStack(Material.ACACIA_LOG, 6)});
 
     }
-    
+
     @Override
     public MachineRecipe findNextRecipe(BlockMenu inv) {
         if (DynaTech.isExoticGardenInstalled() && exoticGardenIntegration.getValue()) {
@@ -88,15 +88,15 @@ public class GrowthChamber extends AMachine {
                         if (sfItem.getId().contains("_BUSH")) {
                             ItemStack fruit = SlimefunItem.getByID(sfItem.getId().replace("_BUSH", "")).getItem();
                             MachineRecipe recipe = new MachineRecipe(21, new ItemStack[] {sfItem.getItem()}, new ItemStack[] {sfItem.getItem(), fruit});
-                            
+
                             inv.consumeItem(inputSlot);
 
                             return recipe;
-                        } else 
+                        } else
                         if (sfItem.getId().contains("_PLANT")) {
                             ItemStack fruit = SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "")) != null ? SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "")).getItem() : SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "_ESSENCE")).getItem();
                             MachineRecipe recipe = new MachineRecipe(12, new ItemStack[] {sfItem.getItem()}, new ItemStack[] {sfItem.getItem(), fruit});
-                            
+
                             inv.consumeItem(inputSlot);
 
                             return recipe;
@@ -105,19 +105,19 @@ public class GrowthChamber extends AMachine {
                             ItemStack fruit = SlimefunItem.getByID(sfItem.getId().replace("_SAPLING", "")).getItem();
                             fruit.setAmount(3);
                             MachineRecipe recipe = new MachineRecipe(30, new ItemStack[] {sfItem.getItem()}, new ItemStack[] {sfItem.getItem(), fruit});
-                            
+
                             inv.consumeItem(inputSlot);
-                            
+
                             return recipe;
-                        }          
-                        
+                        }
+
                     }
                 }
             }
         }
         return super.findNextRecipe(inv);
-        
-    } 
+
+    }
 
     @Override
     public ItemStack getProgressBar() {

@@ -49,18 +49,18 @@ import me.profelements.dynatech.DynaTechItems;
 
 public class WirelessItemOutput extends SlimefunItem implements EnergyNetComponent {
 
-    
+
     protected static final NamespacedKey WIRELESS_LOCATION_KEY = new NamespacedKey(DynaTech.getInstance(), "wireless-input-location");
 	private final int capacity;
-            
+
     public WirelessItemOutput(Category category, int capacity, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
         this.capacity = capacity;
 
         addItemHandler(onBlockBreak(), onBlockPlace(), onRightClick());
-        
-        new BlockMenuPreset("WIRELESS_ITEM_OUTPUT", "Wireless Item Output") {
+
+        new BlockMenuPreset("WIRELESS_ITEM_OUTPUT", "&6无线物品输出节点") {
 
             @Override
             public void init() {
@@ -68,13 +68,13 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
             }
 
             @Override
-            public boolean canOpen(Block b, Player p) { 
+            public boolean canOpen(Block b, Player p) {
                 return p.hasPermission("slimefun.inventory.bypass") || SlimefunPlugin.getProtectionManager().hasPermission(p, b.getLocation(), ProtectableAction.INTERACT_BLOCK);
 
-                
+
             }
 
-            @Override 
+            @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
                 return new int[0];
             }
@@ -85,7 +85,7 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
                     return getInputSlots();
                 } else {
                     return getOutputSlots();
-                } 
+                }
             }
         };
     }
@@ -102,10 +102,10 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
 			@Override
 			public void tick(Block block, SlimefunItem sfItem, Config data) {
                 WirelessItemOutput.this.tick(block);
-				
+
 			}
 
-             
+
        });
     }
 
@@ -115,7 +115,7 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
             @Override
             public void onRightClick(PlayerRightClickEvent event) {
 
-                Optional<Block> blockClicked = event.getClickedBlock();           
+                Optional<Block> blockClicked = event.getClickedBlock();
                 Optional<SlimefunItem> sfBlockClicked = event.getSlimefunBlock();
                 if (blockClicked.isPresent() && sfBlockClicked.isPresent()) {
                     Location blockLoc = blockClicked.get().getLocation();
@@ -127,13 +127,13 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
                         event.cancel();
                         ItemMeta im = item.getItemMeta();
                         String locationString = LocationToString(blockLoc);
-                        
+
                         PersistentDataAPI.setString(im, WIRELESS_LOCATION_KEY, locationString);
                         item.setItemMeta(im);
                         setItemLore(item, blockLoc);
                     }
-                }   
-            } 
+                }
+            }
         };
     }
 
@@ -141,18 +141,18 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(BlockPlaceEvent event) {
-                
-                
+
+
                 Location blockLoc = event.getBlockPlaced().getLocation();
                 ItemStack item = event.getItemInHand();
                 String locationString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
-                
+
                 if (item != null && item.getType() == DynaTechItems.WIRELESS_ITEM_OUTPUT.getType() && item.hasItemMeta() && locationString != null) {
                     BlockStorage.addBlockInfo(blockLoc, "wireless-input-location", locationString);
-                    
-                }   
+
+                }
             }
-            
+
         };
     }
 
@@ -162,17 +162,17 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
 			@Override
 			public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
                 BlockMenu inv = BlockStorage.getInventory(event.getBlock());
-                
+
                 if (inv != null) {
                     inv.dropItems(event.getBlock().getLocation(), getInputSlots());
                     inv.dropItems(event.getBlock().getLocation(), getOutputSlots());
-    
+
                 }
 
 
 				BlockStorage.clearBlockInfo(event.getBlock().getLocation());
 			}
-            
+
         };
     }
 
@@ -180,33 +180,33 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
         String wirelessLocation = BlockStorage.getLocationInfo(b.getLocation(), "wireless-input-location");
         if (wirelessLocation != null) {
             sendItemsFromInput(b, wirelessLocation);
-            
+
         }
     }
 
     private void sendItemsFromInput(Block b, String wirelessLocation) {
         Location wirelessItemInput = StringToLocation(wirelessLocation);
-    
+
         // Note: You should probably also see if the Future from getChunkAtAsync is finished here.
         // you don't really want to possibly trigger the chunk to load in another thread twice.
         if (!wirelessItemInput.getWorld().isChunkLoaded(wirelessItemInput.getBlockX() >> 4, wirelessItemInput.getBlockZ() >> 4)) {
             CompletableFuture<Chunk> chunkLoad = PaperLib.getChunkAtAsync(wirelessItemInput);
             if (!chunkLoad.isDone()) {
                 return;
-            } 
+            }
         }
 
         if (wirelessItemInput != null && BlockStorage.checkID(wirelessItemInput) != null && BlockStorage.checkID(wirelessItemInput).equals(DynaTechItems.WIRELESS_ITEM_INPUT.getItemId())) {
             BlockMenu input = BlockStorage.getInventory(wirelessItemInput);
             BlockMenu output = BlockStorage.getInventory(b);
             updateKnowledgePane(output, getCharge(b.getLocation()));
-            
+
             for (int i : getOutputSlots()) {
                 if (getCharge(wirelessItemInput) < getEnergyConsumption() || getCharge(b.getLocation()) < getEnergyConsumption()) {
                     return;
                 }
                 ItemStack itemStack = input.getItemInSlot(i);
-                
+
                 if (itemStack != null && itemStack.getType() != Material.AIR && InvUtils.fitAll(output.toInventory(), new ItemStack[] {itemStack}, getOutputSlots())) {
                     removeCharge(wirelessItemInput, getEnergyConsumption());
                     removeCharge(b.getLocation(), getEnergyConsumption());
@@ -214,11 +214,11 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
                     itemStack.setAmount(0);
                 }
             }
-            
+
         }
 
     }
- 
+
     private void updateKnowledgePane(BlockMenu menu, int currentCharge) {
         ItemStack knowledgePane = menu.getItemInSlot(4);
         ItemMeta im = knowledgePane.getItemMeta();
@@ -226,8 +226,8 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
 
         lore.clear();
         lore.add(" ");
-        lore.add(ChatColor.WHITE +"Current Power: " + currentCharge);
-        lore.add(ChatColor.WHITE +"Current Status: " + ChatColor.RED + "CONNECTED");
+        lore.add(ChatColor.WHITE + "电力: " + currentCharge + "J");
+        lore.add(ChatColor.GREEN + "已连接");
         knowledgePane.setType(Material.RED_STAINED_GLASS_PANE);
 
         im.setLore(lore);
@@ -237,10 +237,10 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
     //Boilerplate for machines.
     public void constructMenu(BlockMenuPreset preset) {
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), getBorder());
-        preset.addItem(4, new CustomItem(Material.PURPLE_STAINED_GLASS_PANE, "&fKnowledge Pane", "&fCurrent Power: Unknown", "&fCurrent Status: NOT CONNECTED"), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(4, new CustomItem(Material.PURPLE_STAINED_GLASS_PANE, "&b当前状态", "&f电力: 未知", "&c未连接"), ChestMenuUtils.getEmptyClickHandler());
     }
 
-    
+
     public int[] getBorder() {
         return new int[] {0,1,2,3,5,6,7,8,45,46,47,48,49,50,51,52,53};
     }
@@ -250,9 +250,9 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
     }
 
     public int[] getInputSlots() {
-        return new int[0];  
+        return new int[0];
     }
- 
+
     @Override
     public int getCapacity() {
         return capacity;
@@ -271,16 +271,16 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
         ItemMeta im = item.getItemMeta();
         List<String> lore = im.getLore();
         for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("Location: ")) {
+            if (lore.get(i).contains("绑定位置: ")) {
                 lore.remove(i);
-            } 
+            }
         }
 
-        lore.add(ChatColor.WHITE + "Location: " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
+        lore.add(ChatColor.WHITE + "绑定位置: " + l.getWorld().getName() + " " + l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ());
 
         im.setLore(lore);
         item.setItemMeta(im);
-        
+
     }
 
     private String LocationToString(Location l) {

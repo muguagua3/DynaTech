@@ -56,7 +56,7 @@ public class ItemBandTask implements Runnable {
                                 } else {
                                     p.setHealth(health);
                                 }
-                                
+
                             } else {
                                 p.addPotionEffect(pe);
                             }

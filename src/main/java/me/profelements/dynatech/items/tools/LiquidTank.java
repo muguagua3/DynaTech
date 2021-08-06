@@ -1,19 +1,4 @@
-package me.profelements.dynatech.items.tools;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityChangeBlockEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+package me.profelements.dynatech.items.tools;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
@@ -27,6 +12,18 @@ import me.mrCookieSlime.Slimefun.cscorelib2.collections.Pair;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import me.profelements.dynatech.DynaTech;
+import net.guizhanss.minecraft.dynatech.utils.FluidUtils;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class LiquidTank extends SlimefunItem implements NotPlaceable {
 
@@ -43,6 +40,14 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
         addItemHandler(onRightClick());
     }
 
+    public static final List<String> getPlaceableFluids() {
+        List<String> PLACEABLE_FLUIDS = new ArrayList<>();
+        PLACEABLE_FLUIDS.add("WATER");
+        PLACEABLE_FLUIDS.add("LAVA");
+
+        return PLACEABLE_FLUIDS;
+    }
+
     private final ItemUseHandler onRightClick() {
         return e -> {
             e.cancel();
@@ -50,7 +55,7 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
             Optional<Block> b = e.getClickedBlock();
             Optional<SlimefunItem> item = e.getSlimefunItem();
             ItemStack itemStack = e.getItem();
-            
+
             if (b.isPresent() && item.isPresent() && item.get() instanceof LiquidTank && SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), b.get().getLocation(), ProtectableAction.PLACE_BLOCK)) {
                 Block liquid = b.get().getRelative(e.getClickedFace());
                 BlockState liquidState = PaperLib.getBlockState(liquid, false).getState();
@@ -60,26 +65,26 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
                 int fluidAmount = getLiquid(itemStack).getSecondValue();
 
                 if (fluidName != null && e.getPlayer().isSneaking() && fluidAmount >= 1000) {
-                        if (fluidName.equals("WATER")) {
-                            removeLiquid(itemStack, fluidName, 1000);
-                            liquidState.setType(Material.WATER);
-                            liquidState.update(true, true);
-                            
-                            updateLore(itemStack);
-                            
-                        } else if (fluidName.equals("LAVA")) {
-                            removeLiquid(itemStack, fluidName, 1000);
-                            liquidState.setType(Material.LAVA);
-                            liquidState.update(true, true);
-                            
-                            updateLore(itemStack);
-                        }
-                    
-                } else if (fluidName != null && fluidAmount <= liquidTank.getMaxLiquidAmount() && liquid.isLiquid()) {
-                        addLiquid(itemStack, liquid.getType().name(), 1000);
-                        liquidState.setType(Material.AIR);
+                    if (fluidName.equals("WATER")) {
+                        removeLiquid(itemStack, fluidName, 1000);
+                        liquidState.setType(Material.WATER);
                         liquidState.update(true, true);
+
                         updateLore(itemStack);
+
+                    } else if (fluidName.equals("LAVA")) {
+                        removeLiquid(itemStack, fluidName, 1000);
+                        liquidState.setType(Material.LAVA);
+                        liquidState.update(true, true);
+
+                        updateLore(itemStack);
+                    }
+
+                } else if (fluidName != null && fluidAmount <= liquidTank.getMaxLiquidAmount() && liquid.isLiquid()) {
+                    addLiquid(itemStack, liquid.getType().name(), 1000);
+                    liquidState.setType(Material.AIR);
+                    liquidState.update(true, true);
+                    updateLore(itemStack);
                 }
             }
         };
@@ -87,14 +92,6 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
 
     public int getMaxLiquidAmount() {
         return maxLiquidAmount;
-    }
-
-    public static final List<String> getPlaceableFluids() {
-        List<String> PLACEABLE_FLUIDS = new ArrayList<>();
-        PLACEABLE_FLUIDS.add("WATER");
-        PLACEABLE_FLUIDS.add("LAVA");
-
-        return PLACEABLE_FLUIDS;
     }
 
     public void addLiquid(ItemStack item, String fluidName, int fluidAmount) {
@@ -158,14 +155,14 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
         }
 
         for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("Fluid Held: ")) {
+            if (lore.get(i).contains("存储液体: ")) {
 
-                lore.set(i, ChatColor.WHITE + "Fluid Held: " + fluidName);
+                lore.set(i, ChatColor.WHITE + "存储液体: " + FluidUtils.getFluidType(fluidName));
             }
 
-            if (lore.get(i).contains("Amount: ")) {
+            if (lore.get(i).contains("容量: ")) {
 
-                lore.set(i, ChatColor.WHITE + "Amount: " + fluidAmount + "mb / " + getMaxLiquidAmount());
+                lore.set(i, ChatColor.WHITE + "容量: " + fluidAmount + "mb / " + getMaxLiquidAmount());
             }
         }
 

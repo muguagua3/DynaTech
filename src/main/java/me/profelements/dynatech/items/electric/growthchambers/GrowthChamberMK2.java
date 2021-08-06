@@ -18,11 +18,11 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 
 public class GrowthChamberMK2 extends AMachine {
-    
+
     private static int[] BORDER = new int[] {};
     private static int[] BORDER_IN = new int[] {0,8,9,10,11,12,14,15,16,17};
     private static int[] BORDER_OUT = new int[] {18,19,20,21,22,23,24,25,26,27,35,36,44,45,53};
-    
+
     private ItemSetting<Boolean> exoticGardenIntegration = new ItemSetting<Boolean>(this, "exotic-garden-integration", true);
 
     public GrowthChamberMK2(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -99,7 +99,7 @@ public class GrowthChamberMK2 extends AMachine {
                             inv.consumeItem(inputSlot);
 
                             return recipe;
-                        } else 
+                        } else
                         if (sfItem.getId().contains("_PLANT")) {
                             ItemStack fruit = SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "")) != null ? SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "")).getItem() : SlimefunItem.getByID(sfItem.getId().replace("_PLANT", "_ESSENCE")).getItem();
                             MachineRecipe recipe = new MachineRecipe(10, new ItemStack[] {sfItem.getItem()}, new ItemStack[] {sfItem.getItem(), fruit});
@@ -110,13 +110,13 @@ public class GrowthChamberMK2 extends AMachine {
                         } else
                         if (sfItem.getId().contains("_SAPLING")) {
                             ItemStack fruit = SlimefunItem.getByID(sfItem.getId().replace("_SAPLING", "")).getItem();
-                            
+
                             MachineRecipe recipe = new MachineRecipe(60, new ItemStack[] {sfItem.getItem()}, new ItemStack[] {sfItem.getItem(), fruit});
 
                             inv.consumeItem(inputSlot);
 
                             return recipe;
-                        }          
+                        }
 
                     }
                 }
@@ -124,13 +124,13 @@ public class GrowthChamberMK2 extends AMachine {
         }
         return super.findNextRecipe(inv);
 
-    } 
+    }
 
     @Override
     public boolean isGraphical() {
         return true;
     }
-    
+
     @Override
     public String getMachineIdentifier() {
         return "GROWTH_CHAMBER_MK2";
@@ -143,10 +143,10 @@ public class GrowthChamberMK2 extends AMachine {
         borders.add(BORDER);
         borders.add(BORDER_IN);
         borders.add(BORDER_OUT);
-        
+
         return borders;
     }
-    
+
     @Override
     public int[] getInputSlots() {
         return new int[] {1,2,3,4,5,6,7};
@@ -160,10 +160,10 @@ public class GrowthChamberMK2 extends AMachine {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.DIAMOND_HOE);
     }
-    
+
     @Override
     public int getProgressBarSlot() {
         return 13;
     }
-    
+
 }

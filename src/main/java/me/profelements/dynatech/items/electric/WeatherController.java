@@ -46,11 +46,11 @@ public class WeatherController extends AMachine implements RecipeDisplayItem {
             if (item.getType() == Material.SUNFLOWER) {
                 if (b.getWorld().isClearWeather()) {
                     return;
-                } 
+                }
                 b.getWorld().setClearWeatherDuration(1200);
                 removeCharge(b.getLocation(), getEnergyConsumption());
             }
-            
+
             if (item.getType() == Material.LILAC) {
                 if (b.getWorld().hasStorm()) {
                     return;
@@ -88,13 +88,13 @@ public class WeatherController extends AMachine implements RecipeDisplayItem {
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> items = new ArrayList<>();
         items.add(new ItemStack(Material.SUNFLOWER));
-        items.add(new CustomItem(Material.DIAMOND, "&fMakes its sunny in philadelphia."));
+        items.add(new CustomItem(Material.DIAMOND, "&f使费城充满阳光"));
 
         items.add(new ItemStack(Material.LILAC));
-        items.add(new CustomItem(Material.DIAMOND, "&fMakes its rain while the old man snores"));
+        items.add(new CustomItem(Material.DIAMOND, "&f当老人打鼾时下雨"));
 
         items.add(new ItemStack(Material.CREEPER_HEAD));
-        items.add(new CustomItem(Material.DIAMOND, "&fMakes it thunder."));
+        items.add(new CustomItem(Material.DIAMOND, "&f雷雨天"));
 
         return items;
     }
@@ -111,10 +111,10 @@ public class WeatherController extends AMachine implements RecipeDisplayItem {
         borders.add(BORDER);
         borders.add(BORDER_IN);
         borders.add(BORDER_OUT);
-        
+
         return borders;
     }
-    
+
     @Override
     public int[] getInputSlots() {
         return new int[] {13};
@@ -128,7 +128,7 @@ public class WeatherController extends AMachine implements RecipeDisplayItem {
     public ItemStack getProgressBar() {
         return new ItemStack(Material.SUNFLOWER);
     }
-    
+
     @Override
     public int getProgressBarSlot() {
         return 4;
