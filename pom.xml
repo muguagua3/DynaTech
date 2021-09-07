@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.profelements</groupId>
     <artifactId>DynaTech</artifactId>
-    <version>DEV-132-zh_CN</version>
+    <version>DEV-133-zh_CN</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -92,9 +92,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.Slimefun</groupId>
+            <groupId>io.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-24</version>
+            <version>RC-28</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -104,15 +104,15 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.github.thebusybiscuit</groupId>
-            <artifactId>exoticgarden</artifactId>
-            <version>b7dfe8c35b</version>
+            <groupId>com.github.ybw0014</groupId>
+            <artifactId>ExoticGarden-CN</artifactId>
+            <version>804eb8fea2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.ybw0014</groupId>
             <artifactId>InfinityExpansion-CN</artifactId>
-            <version>2ec6dd8608</version>
+            <version>33d8d10d32</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -130,7 +130,7 @@
         <dependency>
             <groupId>com.github.ybw0014</groupId>
             <artifactId>extrautils</artifactId>
-            <version>921521c111</version>
+            <version>bf89aee6ae</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

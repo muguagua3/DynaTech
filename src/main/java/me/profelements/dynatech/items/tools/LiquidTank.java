@@ -1,16 +1,17 @@
 package me.profelements.dynatech.items.tools;
 
+
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.collections.Pair;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import me.profelements.dynatech.DynaTech;
 import net.guizhanss.minecraft.dynatech.utils.FluidUtils;
 import org.bukkit.ChatColor;
@@ -32,20 +33,12 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
 
     private final int maxLiquidAmount;
 
-    public LiquidTank(Category category, SlimefunItemStack item, int maxLiquidAmount, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public LiquidTank(ItemGroup itemGroup, SlimefunItemStack item, int maxLiquidAmount, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
 
         this.maxLiquidAmount = maxLiquidAmount;
 
         addItemHandler(onRightClick());
-    }
-
-    public static final List<String> getPlaceableFluids() {
-        List<String> PLACEABLE_FLUIDS = new ArrayList<>();
-        PLACEABLE_FLUIDS.add("WATER");
-        PLACEABLE_FLUIDS.add("LAVA");
-
-        return PLACEABLE_FLUIDS;
     }
 
     private final ItemUseHandler onRightClick() {
@@ -56,7 +49,7 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
             Optional<SlimefunItem> item = e.getSlimefunItem();
             ItemStack itemStack = e.getItem();
 
-            if (b.isPresent() && item.isPresent() && item.get() instanceof LiquidTank && SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), b.get().getLocation(), ProtectableAction.PLACE_BLOCK)) {
+            if (b.isPresent() && item.isPresent() && item.get() instanceof LiquidTank && Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b.get().getLocation(), Interaction.PLACE_BLOCK)) {
                 Block liquid = b.get().getRelative(e.getClickedFace());
                 BlockState liquidState = PaperLib.getBlockState(liquid, false).getState();
                 LiquidTank liquidTank = (LiquidTank) item.get();
@@ -65,26 +58,26 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
                 int fluidAmount = getLiquid(itemStack).getSecondValue();
 
                 if (fluidName != null && e.getPlayer().isSneaking() && fluidAmount >= 1000) {
-                    if (fluidName.equals("WATER")) {
-                        removeLiquid(itemStack, fluidName, 1000);
-                        liquidState.setType(Material.WATER);
-                        liquidState.update(true, true);
-
-                        updateLore(itemStack);
-
-                    } else if (fluidName.equals("LAVA")) {
-                        removeLiquid(itemStack, fluidName, 1000);
-                        liquidState.setType(Material.LAVA);
-                        liquidState.update(true, true);
-
-                        updateLore(itemStack);
-                    }
-
+                        if (fluidName.equals("WATER")) {
+                            removeLiquid(itemStack, fluidName, 1000);
+                            liquidState.setType(Material.WATER);
+                            liquidState.update(true, true);
+                            
+                            updateLore(itemStack);
+                            
+                        } else if (fluidName.equals("LAVA")) {
+                            removeLiquid(itemStack, fluidName, 1000);
+                            liquidState.setType(Material.LAVA);
+                            liquidState.update(true, true);
+                            
+                            updateLore(itemStack);
+                        }
+                    
                 } else if (fluidName != null && fluidAmount <= liquidTank.getMaxLiquidAmount() && liquid.isLiquid()) {
-                    addLiquid(itemStack, liquid.getType().name(), 1000);
-                    liquidState.setType(Material.AIR);
-                    liquidState.update(true, true);
-                    updateLore(itemStack);
+                        addLiquid(itemStack, liquid.getType().name(), 1000);
+                        liquidState.setType(Material.AIR);
+                        liquidState.update(true, true);
+                        updateLore(itemStack);
                 }
             }
         };
@@ -92,6 +85,14 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable {
 
     public int getMaxLiquidAmount() {
         return maxLiquidAmount;
+    }
+
+    public static final List<String> getPlaceableFluids() {
+        List<String> PLACEABLE_FLUIDS = new ArrayList<>();
+        PLACEABLE_FLUIDS.add("WATER");
+        PLACEABLE_FLUIDS.add("LAVA");
+
+        return PLACEABLE_FLUIDS;
     }
 
     public void addLiquid(ItemStack item, String fluidName, int fluidAmount) {

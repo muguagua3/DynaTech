@@ -1,12 +1,12 @@
 package me.profelements.dynatech.items.tools;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.profelements.dynatech.DynaTech;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -22,12 +22,13 @@ import java.util.List;
 public class DimensionalHome extends SlimefunItem {
 
     private final NamespacedKey chunkId = new NamespacedKey(DynaTech.getInstance(), "chunk-id");
-    private final World dimHomeWorld = Bukkit.getServer().getWorld("dimensionalhome");
+
     private int id = 1;
     private boolean idSet = false;
+    private final World dimHomeWorld = Bukkit.getServer().getWorld("dimensionalhome");
 
-    public DimensionalHome(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public DimensionalHome(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
         addItemHandler(onRightClick());
     }
 
@@ -85,14 +86,14 @@ public class DimensionalHome extends SlimefunItem {
                 id++;
                 lore.set(line, lore.get(line).replace("<id>", String.valueOf(id)));
                 PersistentDataAPI.setInt(im, chunkId, id);
-
+                        
                 idSet = true;
             }
-
+    
         }
 
         im.setLore(lore);
         item.setItemMeta(im);
     }
-
+    
 }

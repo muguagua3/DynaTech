@@ -1,8 +1,8 @@
 package me.profelements.dynatech.items.misc;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -14,8 +14,8 @@ import javax.annotation.Nonnull;
 
 public class WitherGolem extends MultiBlockMachine {
 
-    public WitherGolem(Category category, SlimefunItemStack item) {
-        super(category, item, new ItemStack[]{null, new ItemStack(Material.CARVED_PUMPKIN), null, null, new ItemStack(Material.POLISHED_BLACKSTONE), null, null, new ItemStack(Material.POLISHED_BLACKSTONE), null}, BlockFace.SELF);
+    public WitherGolem(ItemGroup itemGroup, SlimefunItemStack item) {
+        super(itemGroup, item, new ItemStack[] {null, new ItemStack(Material.CARVED_PUMPKIN), null, null, new ItemStack(Material.POLISHED_BLACKSTONE), null, null, new ItemStack(Material.POLISHED_BLACKSTONE), null}, BlockFace.SELF);
     }
 
     @Override
