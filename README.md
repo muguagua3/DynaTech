@@ -13,6 +13,7 @@
 <p align="center">
   <a href="https://github.com/ybw0014/DynaTech-CN/actions/workflows/maven.yml">
     <img src="https://github.com/ybw0014/DynaTech-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
+
   </a>
 
   <a href="https://builds.guizhanss.net/ybw0014/DynaTech-CN/master">
