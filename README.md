@@ -72,7 +72,7 @@
 ## 集成
 
  - **恼鬼 生物芯片** - 如果安装了无尽科技，你可以通过恼鬼生物芯片来帮你获得幽灵精华与恼鬼宝石。
-
+ - **幻翼 生物芯片** - 如果安装了无尽科技，你可以通过幻翼生物芯片来帮你获得幻翼膜。
 ## Credits
 
  [NCBPFluffyBear](https://github.com/ncbpfluffybear) for their autocrafter code since it helped alot with the Auto-Kitchen.

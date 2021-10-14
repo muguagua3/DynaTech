@@ -61,7 +61,7 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
         getServer().getScheduler().runTaskTimer(DynaTech.getInstance(), () -> this.tickInterval++, 0, TICK_TIME);
 
         if (getConfig().getBoolean("options.auto-update", true) && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "ybw0014/DynaTech/master");
+            new GitHubBuildsUpdater(this, getFile(), "ybw0014/DynaTech-CN/master").start();
         }
 
         if (System.getProperty("java.version").startsWith("1.8")) {
@@ -79,7 +79,7 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/ybw0014/DynaTech/issues";
+        return "https://github.com/ybw0014/DynaTech-CN/issues";
     }
 
     @Nonnull

@@ -251,6 +251,14 @@ public class DynaTechItemsSetup {
                     .addDrop(DynaTechItems.VEX_GEM, 1)
                     .addDrop(DynaTechItems.GHOSTLY_ESSENCE, 9)
                     .register(plugin);
+
+                new MobDataCard("Phantom", "幻翼", MobDataTier.HOSTILE, new ItemStack[] {
+                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), MobData.EMPTY_DATA_CARD, new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+                })
+                    .addDrop(Material.PHANTOM_MEMBRANE, 0.25f)
+                    .register(plugin);
             }catch(NoSuchMethodError ex){
                 DynaTech.getInstance().getLogger().warning("当前服务器安装的 InfinityExpansion 版本不受本汉化版插件的支持");
                 DynaTech.getInstance().getLogger().warning("部分功能未启用");
