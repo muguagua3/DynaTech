@@ -6,8 +6,6 @@
 
 ## 下载
 
-**警告**:汉化版DynaTech中部分依赖InfinityExpansion(无尽科技)的功能需配合 [汉化版InfinityExpansion](https://github.com/ybw0014/InfinityExpansion-CN) 才能正常使用，如果你已安装InfinityExpansion，请确保使用的是由本人汉化的版本，对于其他汉化版以及原版不提供任何支持。
-
 点击这里下载 DynaTech: [下载 DynaTech](https://builds.guizhanss.net/ybw0014/DynaTech-CN/master)
 
 <p align="center">

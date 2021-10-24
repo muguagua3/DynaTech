@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.profelements</groupId>
     <artifactId>DynaTech</artifactId>
-    <version>DEV-136-zh_CN</version>
+    <version>UNOFFICIAL</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -69,6 +69,10 @@
                             <pattern>dev.j3fftw.extrautils</pattern>
                             <shadedPattern>me.profelements.dynatech.extrautils</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>net.guizhanss.minecraft.chineselib</pattern>
+                            <shadedPattern>me.profelements.dynatech.chineselib</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -112,7 +116,7 @@
         <dependency>
             <groupId>com.github.ybw0014</groupId>
             <artifactId>InfinityExpansion-CN</artifactId>
-            <version>33d8d10d32</version>
+            <version>27411de398</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -131,6 +135,12 @@
             <groupId>com.github.ybw0014</groupId>
             <artifactId>extrautils</artifactId>
             <version>bf89aee6ae</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ybw0014</groupId>
+            <artifactId>ChineseLib</artifactId>
+            <version>0.2.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

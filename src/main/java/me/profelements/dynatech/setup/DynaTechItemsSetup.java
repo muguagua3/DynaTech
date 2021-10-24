@@ -243,7 +243,7 @@ public class DynaTechItemsSetup {
 
         if (DynaTech.isInfinityExpansionInstalled()) {
             try{
-                new MobDataCard("Vex", "恼鬼", MobDataTier.HOSTILE, new ItemStack[] {
+                new MobDataCard("Vex", MobDataTier.HOSTILE, new ItemStack[] {
                     new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16),
                     new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), MobData.EMPTY_DATA_CARD, new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16),
                     new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16)
@@ -252,7 +252,7 @@ public class DynaTechItemsSetup {
                     .addDrop(DynaTechItems.GHOSTLY_ESSENCE, 9)
                     .register(plugin);
 
-                new MobDataCard("Phantom", "幻翼", MobDataTier.HOSTILE, new ItemStack[] {
+                new MobDataCard("Phantom", MobDataTier.HOSTILE, new ItemStack[] {
                     new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
                     new ItemStack(Material.PHANTOM_MEMBRANE, 16), MobData.EMPTY_DATA_CARD, new ItemStack(Material.PHANTOM_MEMBRANE, 16),
                     new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
