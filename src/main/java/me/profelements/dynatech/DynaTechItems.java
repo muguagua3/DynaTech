@@ -466,14 +466,13 @@ public class DynaTechItems {
     
     public static final SlimefunItemStack EXTERNAL_HEATER = new SlimefunItemStack("DT_EXTERNAL_HEATER", 
         Material.BRICKS,
-        "&6External Heater",
+        "&6外部加热器",
         "",
-        "&fExternally heats Furnaces, Blast Furnaces,",
-        "&fand Smokers.",
+        "&f从外部加热熔炉,高炉,烟熏炉",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.powerBuffer(2048),
-        LoreBuilderDynamic.power(128, " per heated block")
+        LoreBuilderDynamic.power(128, " 每次加热")
     );
 
 
