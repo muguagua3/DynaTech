@@ -17,6 +17,7 @@ import me.profelements.dynatech.items.electric.AntigravityBubble;
 import me.profelements.dynatech.items.electric.AutoKitchen;
 import me.profelements.dynatech.items.electric.BandaidManager;
 import me.profelements.dynatech.items.electric.BarbedWire;
+import me.profelements.dynatech.items.electric.FurnaceController;
 import me.profelements.dynatech.items.electric.MaterialHive;
 import me.profelements.dynatech.items.electric.PotionSprinkler;
 import me.profelements.dynatech.items.electric.SeedPlucker;
@@ -242,30 +243,22 @@ public class DynaTechItemsSetup {
         ).register(plugin);
 
         if (DynaTech.isInfinityExpansionInstalled()) {
-            try{
-                new MobDataCard("Vex", MobDataTier.HOSTILE, new ItemStack[] {
-                    new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16),
-                    new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), MobData.EMPTY_DATA_CARD, new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16),
-                    new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16)
-                })
-                    .addDrop(DynaTechItems.VEX_GEM, 1)
-                    .addDrop(DynaTechItems.GHOSTLY_ESSENCE, 9)
-                    .register(plugin);
+            new MobDataCard("Vex", MobDataTier.HOSTILE, new ItemStack[] {
+                new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16),
+                new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), MobData.EMPTY_DATA_CARD, new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16),
+                new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16)
+            })
+            .addDrop(DynaTechItems.VEX_GEM, 1)
+            .addDrop(DynaTechItems.GHOSTLY_ESSENCE, 9)
+            .register(plugin);
 
-                new MobDataCard("Phantom", MobDataTier.HOSTILE, new ItemStack[] {
-                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
-                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), MobData.EMPTY_DATA_CARD, new ItemStack(Material.PHANTOM_MEMBRANE, 16),
-                    new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
-                })
-                    .addDrop(Material.PHANTOM_MEMBRANE, 0.25f)
-                    .register(plugin);
-            }catch(NoSuchMethodError ex){
-                DynaTech.getInstance().getLogger().warning("当前服务器安装的 InfinityExpansion 版本不受本汉化版插件的支持");
-                DynaTech.getInstance().getLogger().warning("部分功能未启用");
-                DynaTech.getInstance().getLogger().warning("如需启用这些功能，请前往该地址下载支持的 InfinityExpansion 版本:");
-                DynaTech.getInstance().getLogger().warning("https://github.com/ybw0014/InfinityExpansion");
-            }
-
+            new MobDataCard("Phantom", MobDataTier.HOSTILE, new ItemStack[] {
+                new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+                new ItemStack(Material.PHANTOM_MEMBRANE, 16), MobData.EMPTY_DATA_CARD, new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+                new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16), new ItemStack(Material.PHANTOM_MEMBRANE, 16),
+            })
+            .addDrop(Material.PHANTOM_MEMBRANE, 0.25f)
+            .register(plugin);
         }
 
         new WitherGolem(DynaTechItems.DT_TOOLS, DynaTechItems.WITHER_GOLEM).register(plugin);
@@ -507,6 +500,13 @@ public class DynaTechItemsSetup {
                 DynaTechItems.WIRELESS_ENERGY_BANK, DynaTechItems.TESSERACTING_OBJ, DynaTechItems.WIRELESS_ITEM_INPUT,
                 DynaTechItems.TESSERACTING_OBJ, DynaTechItems.GHOSTLY_ESSENCE, DynaTechItems.TESSERACTING_OBJ,
                 DynaTechItems.WIRELESS_ITEM_OUTPUT, DynaTechItems.TESSERACTING_OBJ, DynaTechItems.WIRELESS_ENERGY_POINT
+        }).register(plugin);
+
+        new FurnaceController(DynaTechItems.DT_MACHINES, DynaTechItems.EXTERNAL_HEATER, RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {
+                DynaTechItems.STAINLESS_STEEL, SlimefunItems.HARDENED_METAL_INGOT, DynaTechItems.STAINLESS_STEEL,
+                new ItemStack(Material.OBSIDIAN), new ItemStack(Material.OBSERVER), new ItemStack(Material.OBSIDIAN),
+                new ItemStack(Material.OBSIDIAN), SlimefunItems.ENERGY_REGULATOR, new ItemStack(Material.OBSIDIAN)
         }).register(plugin);
 
         new LiquidTank(DynaTechItems.DT_TOOLS, DynaTechItems.LIQUID_TANK, 16000, RecipeType.ENHANCED_CRAFTING_TABLE,
