@@ -78,6 +78,23 @@ public class DynaTechItems {
         "&e右键点击&7打开"
     );
 
+    public static final SlimefunItemStack SOULBOUND_PICNIC_BASKET = new SlimefunItemStack("SOULBOUND_PICNIC_BASKET",
+        new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("7a6bf916e28ccb80b4ebfacf98686ad6af7c4fb257e57a8cb78c71d19dccb2"))),
+        "&6灵魂绑定野餐篮",
+        "",
+        "&f允许你储存食物",
+        "&f在你的饥饿度降低时自动喂食",
+        "&f必须储放在物品栏中",
+        "",
+        "&f大小: &e27",
+        "",
+        "&7ID: <ID>",
+        "",
+        "&e右键点击&7打开",
+        "",
+        "&d灵魂绑定"
+    );
+
     public static final SlimefunItemStack INVENTORY_FILTER = new SlimefunItemStack("INVENTORY_FILTER",
         Material.IRON_BARS,
         "&6物品栏过滤器",
