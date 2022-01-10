@@ -56,6 +56,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
                 <configuration>
+                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
@@ -70,8 +71,8 @@
                             <shadedPattern>me.profelements.dynatech.extrautils</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>net.guizhanss.minecraft.chineselib</pattern>
-                            <shadedPattern>me.profelements.dynatech.chineselib</shadedPattern>
+                            <pattern>net.guizhanss.guizhanlib</pattern>
+                            <shadedPattern>me.profelements.dynatech.guizhanlib</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -138,9 +139,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ybw0014</groupId>
-            <artifactId>ChineseLib</artifactId>
-            <version>0.2.1</version>
+            <groupId>net.guizhanss</groupId>
+            <artifactId>GuizhanLib</artifactId>
+            <version>0.4.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
