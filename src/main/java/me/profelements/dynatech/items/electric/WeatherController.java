@@ -44,18 +44,22 @@ public class WeatherController extends AMachine implements RecipeDisplayItem {
             if (item.getType() == Material.SUNFLOWER) {
                 if (b.getWorld().isClearWeather()) {
                     return;
-                }
-                b.getWorld().setClearWeatherDuration(1200);
-                removeCharge(b.getLocation(), getEnergyConsumption());
+                } 
+                DynaTech.runSync(() -> {
+                    b.getWorld().setClearWeatherDuration(1200);
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+                });
             }
 
             if (item.getType() == Material.LILAC) {
                 if (b.getWorld().hasStorm()) {
                     return;
                 }
-                b.getWorld().setStorm(true);
-                b.getWorld().setWeatherDuration(1200);
-                removeCharge(b.getLocation(), getEnergyConsumption());
+                DynaTech.runSync(() -> {
+                    b.getWorld().setStorm(true);
+                    b.getWorld().setWeatherDuration(1200);
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+                });
             }
 
             if (item.getType() == Material.CREEPER_HEAD) {
