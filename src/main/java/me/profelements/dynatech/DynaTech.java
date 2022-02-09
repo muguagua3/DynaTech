@@ -23,7 +23,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.logging.Level;
 
 public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
