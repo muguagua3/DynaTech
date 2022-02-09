@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import me.profelements.dynatech.DynaTech;
+import net.guizhanss.guizhanlib.minecraft.helper.potion.PotionEffectTypeHelper;
 import net.guizhanss.minecraft.dynatech.utils.ItemBandUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -49,7 +50,7 @@ public class ItemBand extends SlimefunItem {
             ItemMeta im = item.getItemMeta();
             List<String> lore = im.hasLore() ? im.getLore() : new ArrayList<>();
             
-            lore.add(ChatColor.WHITE + "物品模组效果: " + getPotionEffects()[0].getType().getName());
+            lore.add(ChatColor.WHITE + "物品模组效果: " + PotionEffectTypeHelper.getName(getPotionEffects()[0].getType()));
             PersistentDataAPI.setString(im, KEY, this.getId());
 
             im.setLore(lore);
