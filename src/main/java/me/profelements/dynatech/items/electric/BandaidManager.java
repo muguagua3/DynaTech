@@ -17,7 +17,9 @@ public class BandaidManager extends AMachine {
     public BandaidManager(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
+    
 
+    //TODO: Rewrite this thing into a much better version - Quinn
     @Override
     public MachineRecipe findNextRecipe(BlockMenu inv) {
 
@@ -29,7 +31,11 @@ public class BandaidManager extends AMachine {
                 if (sfBand != null) {
                     if (sfBand instanceof ItemBand) {
                         ItemBand band = (ItemBand) sfBand;
-                        ItemStack result = band.applyToItem(target).clone();
+                        ItemStack result = band.applyToItem(target.clone());
+
+                        if (result.getAmount() > 1) {
+                            result.setAmount(1);
+                        }
 
                         inv.consumeItem(getInputSlots()[0]);
                         inv.consumeItem(getInputSlots()[1]);
@@ -40,9 +46,13 @@ public class BandaidManager extends AMachine {
                 }
             } else if (ItemBand.containsItemBand(target)) {
                 String id = PersistentDataAPI.getString(target.getItemMeta(), ItemBand.KEY);
-                if (SlimefunItem.getById(id) != null) {
+                if (id != null && SlimefunItem.getById(id) != null) {
                     SlimefunItem sfItem = SlimefunItem.getById(id);
-                    ItemStack result = ItemBand.removeFromItem(target).clone();
+                    ItemStack result = ItemBand.removeFromItem(target.clone());
+                        
+                    if (result.getAmount() > 1) {
+                        result.setAmount(1);
+                    }
 
                     inv.consumeItem(getInputSlots()[0]);
 
