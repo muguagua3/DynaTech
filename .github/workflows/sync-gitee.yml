@@ -17,5 +17,5 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
         with:
-          source-repo: "git@github.com:GuizhanCraft/DynaTech-CN.git"
+          source-repo: "git@github.com:SlimefunGuguProject/DynaTech.git"
           destination-repo: "git@gitee.com:ybw0014/DynaTech-CN.git"
