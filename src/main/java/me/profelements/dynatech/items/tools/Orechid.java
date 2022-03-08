@@ -46,13 +46,10 @@ public class Orechid extends AMachine implements RecipeDisplayItem {
                 
                 Block relBlock = b.getRelative(relative);
     
-                if (ORE_MAP.containsKey(relBlock.getType())) {
-                    RandomizedSet<ItemStack> set = ORE_MAP.get(relBlock.getType());
-                    if (set == null) {
-                        continue;
-                    }
+                RandomizedSet<ItemStack> set = ORE_MAP.get(relBlock.getType());
+                if (set != null) {
+                    ItemStack item = set.getRandom();
 
-                    ItemStack item = ORE_MAP.get(relBlock.getType()).getRandom();
                     SlimefunItem sfi = SlimefunItem.getByItem(item);
 
                     DynaTech.runSync(() -> {
