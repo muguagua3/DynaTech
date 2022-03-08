@@ -47,6 +47,11 @@ public class Orechid extends AMachine implements RecipeDisplayItem {
                 Block relBlock = b.getRelative(relative);
     
                 if (oreMap.containsKey(relBlock.getType())) {
+                    RandomizedSet<ItemStack> set = oreMap.get(relBlock.getType());
+                    if (set == null) {
+                        continue;
+                    }
+
                     ItemStack item = oreMap.get(relBlock.getType()).getRandom();
                     SlimefunItem sfi = SlimefunItem.getByItem(item);
 
