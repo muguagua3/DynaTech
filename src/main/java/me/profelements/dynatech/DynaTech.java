@@ -43,6 +43,11 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
         new Metrics(this, 9689);
 
+        if (getConfig().getBoolean("options.auto-update") &&
+            getDescription().getVersion().startsWith("Build")) {
+            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "DynaTech", "master", false).start();
+        }
+
         if (!getConfig().getBoolean("options.disable-dimensionalhome-world")) {
             WorldCreator worldCreator = new WorldCreator("dimensionalhome");
             worldCreator.generator(new DimensionalHomeDimension());
@@ -58,11 +63,6 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
         //Tasks
         getServer().getScheduler().runTaskTimerAsynchronously(DynaTech.getInstance(), new ItemBandTask(), 0L, 5 * 20L);
         getServer().getScheduler().runTaskTimer(DynaTech.getInstance(), () -> this.tickInterval++, 0, TICK_TIME);
-
-        if (getConfig().getBoolean("options.auto-update") &&
-            getDescription().getVersion().startsWith("Build")) {
-            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "DynaTech-CN", "master", false).start();
-        }
     }
 
     @Override
@@ -74,7 +74,7 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/ybw0014/DynaTech-CN/issues";
+        return "https://github.com/ybw0014/DynaTech/issues";
     }
 
     @Nonnull
