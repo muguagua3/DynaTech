@@ -60,7 +60,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.profelements.dynatech</shadedPattern>
+                            <shadedPattern>me.profelements.dynatech.bstats</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.github.mooy1.infinitylib</pattern>
@@ -101,12 +101,6 @@
             <artifactId>Slimefun4</artifactId>
             <version>RC-30</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.github.thebusybiscuit</groupId>
-                    <artifactId>cscorelib2</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.ybw0014</groupId>
@@ -133,7 +127,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ybw0014</groupId>
+            <groupId>net.guizhanss</groupId>
             <artifactId>extrautils</artifactId>
             <version>bf89aee6ae</version>
             <scope>compile</scope>
