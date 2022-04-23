@@ -501,7 +501,7 @@ public class DynaTechItems {
         "&f使用水力发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
-        LoreBuilder.powerBuffer(32),
+        LoreBuilder.powerBuffer(16),
         LoreBuilderDynamic.powerPerSecond(4)
     );
 
