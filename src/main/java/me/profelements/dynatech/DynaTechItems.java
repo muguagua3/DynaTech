@@ -501,8 +501,8 @@ public class DynaTechItems {
         "&f使用水力发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
-        LoreBuilder.powerBuffer(128),
-        LoreBuilderDynamic.powerPerSecond(16)
+        LoreBuilder.powerBuffer(32),
+        LoreBuilderDynamic.powerPerSecond(4)
     );
 
     public static final SlimefunItemStack WATER_TURBINE = new SlimefunItemStack("WATER_TURBINE",
@@ -512,8 +512,8 @@ public class DynaTechItems {
         "&f使用水力发电",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.GENERATOR),
-        LoreBuilder.powerBuffer(512),
-        LoreBuilderDynamic.powerPerSecond(64)
+        LoreBuilder.powerBuffer(64),
+        LoreBuilderDynamic.powerPerSecond(20)
     );
 
     public static final SlimefunItemStack DRAGON_GENERATOR = new SlimefunItemStack("DRAGON_GENERATOR",
