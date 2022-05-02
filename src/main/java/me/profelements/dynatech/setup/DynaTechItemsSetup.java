@@ -413,9 +413,6 @@ public class DynaTechItemsSetup {
                 DynaTechItems.STAINLESS_STEEL, new ItemStack(Material.OAK_LOG), DynaTechItems.STAINLESS_STEEL,
                 SlimefunItems.ZINC_INGOT, SlimefunItems.ZINC_INGOT, SlimefunItems.ZINC_INGOT
         })
-        .setEnergyCapacity(128)
-        .setEnergyConsumption(16)
-        .setProcessingSpeed(1)
         .register(plugin);
 
         new MaterialHive(DynaTechItems.DT_MACHINES, DynaTechItems.MATERIAL_HIVE, RecipeType.ENHANCED_CRAFTING_TABLE,
