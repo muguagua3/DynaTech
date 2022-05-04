@@ -11,7 +11,9 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   </properties>
+        <sonar.organization>profelements</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 
     <repositories>
         <repository>
@@ -63,10 +65,6 @@
                             <shadedPattern>me.profelements.dynatech.bstats</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>io.github.mooy1.infinitylib</pattern>
-                            <shadedPattern>me.profelements.dynatech.infinitylib</shadedPattern>
-                        </relocation>
-                        <relocation>
                             <pattern>dev.j3fftw.extrautils</pattern>
                             <shadedPattern>me.profelements.dynatech.extrautils</shadedPattern>
                         </relocation>
@@ -103,15 +101,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ybw0014</groupId>
-            <artifactId>ExoticGarden-CN</artifactId>
-            <version>804eb8fea2</version>
+            <groupId>com.github.SlimefunGuguProject</groupId>
+            <artifactId>ExoticGarden</artifactId>
+            <version>edae221160</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ybw0014</groupId>
-            <artifactId>InfinityExpansion-CN</artifactId>
-            <version>27411de398</version>
+            <groupId>com.github.baoad</groupId>
+            <artifactId>InfinityExpansion</artifactId>
+            <version>3ade94cd75</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -135,7 +133,7 @@
         <dependency>
             <groupId>net.guizhanss</groupId>
             <artifactId>GuizhanLib</artifactId>
-            <version>0.7.0</version>
+            <version>0.9.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
