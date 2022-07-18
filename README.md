@@ -2,11 +2,9 @@
 
 这是一些我设计的物品或机器，有些会让事情变得更加简单，而有些只是用来玩的。其中的许多物品可能过于强大或过于不足。
 
-**此插件需要 1.17 及以上版本**
+**此插件需要 1.19 及以上版本**
 
 ## 下载
-
-**自动更新**: 汉化版构建#16及以上版本包含自动更新功能，默认开启。
 
 点击这里下载 DynaTech: [下载 DynaTech](https://builds.guizhanss.net/ybw0014/DynaTech-CN/master)
 
@@ -75,6 +73,7 @@
 
  - **恼鬼 生物芯片** - 如果安装了无尽科技，你可以通过恼鬼生物芯片来帮你获得幽灵精华与恼鬼宝石。
  - **幻翼 生物芯片** - 如果安装了无尽科技，你可以通过幻翼生物芯片来帮你获得幻翼膜。
+
 ## Credits
 
  [NCBPFluffyBear](https://github.com/ncbpfluffybear) for their autocrafter code since it helped alot with the Auto-Kitchen.
