@@ -12,7 +12,7 @@ import me.profelements.dynatech.listeners.InventoryFilterListener;
 import me.profelements.dynatech.listeners.PicnicBasketListener;
 import me.profelements.dynatech.setup.DynaTechItemsSetup;
 import me.profelements.dynatech.tasks.ItemBandTask;
-import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanBuildsUpdaterWrapper;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -48,7 +48,7 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
         if (getConfig().getBoolean("options.auto-update") &&
             getDescription().getVersion().startsWith("Build")) {
-            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "DynaTech", "master", false).start();
+            GuizhanBuildsUpdaterWrapper.start(this, getFile(), "ybw0014", "DynaTech", "master", false);
         }
 
         if (!getConfig().getBoolean("options.disable-dimensionalhome-world")) {
