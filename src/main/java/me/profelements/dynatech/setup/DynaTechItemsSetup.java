@@ -297,8 +297,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.BONE_BLOCK),new ItemStack(Material.GRASS_BLOCK),new ItemStack(Material.BONE_BLOCK),
                 DynaTechItems.STAINLESS_STEEL,SlimefunItems.CROP_GROWTH_ACCELERATOR_2,DynaTechItems.STAINLESS_STEEL
         })
-        .setEnergyCapacity(512)
-        .setEnergyConsumption(32)
+        .setCapacity(512)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -308,8 +308,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.GRASS_BLOCK),new ItemStack(Material.LIME_STAINED_GLASS),new ItemStack(Material.SAND),
                 SlimefunItems.STEEL_PLATE,DynaTechItems.GROWTH_CHAMBER,SlimefunItems.STEEL_PLATE
         })
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(128)
+        .setCapacity(1024)
+        .setConsumption(128)
         .setProcessingSpeed(3)
         .register(plugin);
 
@@ -319,8 +319,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.PURPUR_BLOCK),new ItemStack(Material.CHORUS_FLOWER),new ItemStack(Material.END_STONE),
                 DynaTechItems.STAINLESS_STEEL,DynaTechItems.GROWTH_CHAMBER,DynaTechItems.STAINLESS_STEEL
         })
-        .setEnergyCapacity(512)
-        .setEnergyConsumption(32)
+        .setCapacity(512)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -330,8 +330,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.PURPUR_PILLAR),new ItemStack(Material.PURPLE_STAINED_GLASS),new ItemStack(Material.END_STONE_BRICKS),
                 SlimefunItems.STEEL_PLATE,DynaTechItems.GROWTH_CHAMBER_END,SlimefunItems.STEEL_PLATE
         })
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(128)
+        .setCapacity(1024)
+        .setConsumption(128)
         .setProcessingSpeed(3)
         .register(plugin);
 
@@ -341,8 +341,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.CRIMSON_NYLIUM),new ItemStack(Material.SOUL_SAND),new ItemStack(Material.WARPED_NYLIUM),
                 DynaTechItems.STAINLESS_STEEL,DynaTechItems.GROWTH_CHAMBER,DynaTechItems.STAINLESS_STEEL
         })
-        .setEnergyCapacity(512)
-        .setEnergyConsumption(32)
+        .setCapacity(512)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -352,8 +352,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.CRIMSON_NYLIUM),new ItemStack(Material.SOUL_SAND),new ItemStack(Material.WARPED_NYLIUM),
                 SlimefunItems.STEEL_PLATE,DynaTechItems.GROWTH_CHAMBER_NETHER,SlimefunItems.STEEL_PLATE
         })
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(128)
+        .setCapacity(1024)
+        .setConsumption(128)
         .setProcessingSpeed(3)
         .register(plugin);
 
@@ -363,8 +363,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.SAND),new ItemStack(Material.WATER_BUCKET),
                 DynaTechItems.STAINLESS_STEEL,DynaTechItems.GROWTH_CHAMBER,DynaTechItems.STAINLESS_STEEL
         })
-        .setEnergyCapacity(512)
-        .setEnergyConsumption(32)
+        .setCapacity(512)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -375,8 +375,8 @@ public class DynaTechItemsSetup {
                 SlimefunItems.STEEL_PLATE,DynaTechItems.GROWTH_CHAMBER_OCEAN,SlimefunItems.STEEL_PLATE
 
         })
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(128)
+        .setCapacity(1024)
+        .setConsumption(128)
         .setProcessingSpeed(3)
         .register(plugin);
 
@@ -397,8 +397,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.WATER_BUCKET), DynaTechItems.ANCIENT_MACHINE_CORE, new ItemStack(Material.LAVA_BUCKET),
                 DynaTechItems.STAINLESS_STEEL, new ItemStack(Material.CRYING_OBSIDIAN), DynaTechItems.STAINLESS_STEEL
         })
-        .setEnergyCapacity(512)
-        .setEnergyConsumption(32)
+        .setCapacity(512)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -408,8 +408,8 @@ public class DynaTechItemsSetup {
                 new ItemStack(Material.IRON_BARS), DynaTechItems.ANCIENT_MACHINE_CORE, new ItemStack(Material.IRON_BARS),
                 SlimefunItems.FERROSILICON, SlimefunItems.FERROSILICON, SlimefunItems.FERROSILICON
         })
-        .setEnergyCapacity(256)
-        .setEnergyConsumption(32)
+        .setCapacity(256)
+        .setConsumption(32)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -442,8 +442,8 @@ public class DynaTechItemsSetup {
                 null, SlimefunItems.SMALL_CAPACITOR, null
         }, 16
         )
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(16)
+        .setCapacity(1024)
+        .setConsumption(16)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -465,8 +465,8 @@ public class DynaTechItemsSetup {
                 SlimefunItems.REINFORCED_CLOTH, new ItemStack(Material.ENCHANTING_TABLE), SlimefunItems.REINFORCED_CLOTH,
                 null, SlimefunItems.WITHER_PROOF_OBSIDIAN, null
         })
-        .setEnergyCapacity(1024)
-        .setEnergyConsumption(48)
+        .setCapacity(1024)
+        .setConsumption(48)
         .setProcessingSpeed(1)
         .register(plugin);
 
@@ -565,7 +565,8 @@ public class DynaTechItemsSetup {
                 DynaTechItems.STAINLESS_STEEL, DynaTechItems.STAINLESS_STEEL, DynaTechItems.STAINLESS_STEEL
         })
         .setEnergyCapacity(256)
-        .setEnergyProduction(2)
+        .setEnergyProduction(8)
+        .setProcessingSpeed(1)
         .register(plugin);
 
         new CulinaryGenerator(DynaTechItems.DT_GENERATORS, DynaTechItems.CULINARY_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
