@@ -29,6 +29,9 @@ public class DynaTechItems {
     public static final SubItemGroup DT_MACHINES = new SubItemGroup(new NamespacedKey(DynaTech.getInstance(), "DT_MACHINES"), DT_GENERAL, new CustomItemStack(Material.SEA_LANTERN, "&b动力科技 - 机器"));
     public static final SubItemGroup DT_GENERATORS = new SubItemGroup(new NamespacedKey(DynaTech.getInstance(), "DT_GENERATORS"), DT_GENERAL, new CustomItemStack(Material.PRISMARINE_BRICKS, "&b动力科技 - 发电机"));
 
+    public static final SubItemGroup DT_HIVES = new SubItemGroup(new NamespacedKey(DynaTech.getInstance(), "DT_HIVES"), DT_GENERAL, new CustomItemStack(Material.BEEHIVE, "&b动力科技 - 蜂巢"));
+
+
     public static final RecipeType DynaTechScoop = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "dt_scoop"),
         new CustomItemStack(Material.IRON_SHOVEL, "&b使用勺子铲蜜蜂")
     );
@@ -152,6 +155,7 @@ public class DynaTechItems {
         new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("f1e2428cb359988f4c4ff0e61de21385c62269de19a69762d773223b75dd1666"))),
         "&6物品模组: 生命提升",
         "",
+        "&9使用物品模组管理器安装",
         "&f当安装到防具或工具上时",
         "&f提供生命提升 II 的效果",
         "",
@@ -162,6 +166,7 @@ public class DynaTechItems {
         new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("4f01ec6331a3bc30a8204ec56398d08ca38788556bca9b81d776f6238d567367"))),
         "&6物品模组: 急迫",
         "",
+        "&9使用物品模组管理器安装",
         "&f当安装到防具或工具上时",
         "&f提供急迫 II 的效果",
         "",
@@ -209,6 +214,8 @@ public class DynaTechItems {
         "&f自动合成&e厨房&f配方",
         "",
         "&f&o闻起来像饼干一样",
+        "",
+        "&4&l已弃用，请使用&6厨房自动合成机",
         "",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(1),
