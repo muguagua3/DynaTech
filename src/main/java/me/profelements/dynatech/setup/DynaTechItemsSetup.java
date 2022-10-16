@@ -62,6 +62,7 @@ import me.profelements.dynatech.items.tools.InventoryFilter;
 import me.profelements.dynatech.items.tools.LiquidTank;
 import me.profelements.dynatech.items.tools.Scoop;
 import me.profelements.dynatech.items.tools.TesseractBinder;
+import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -602,10 +603,10 @@ public class DynaTechItemsSetup {
             if (item != null) {
                 SlimefunItemStack apiary = new SlimefunItemStack("DT_" + id.replace("_INGOT", "") + "_MINERALIZED_APIARY",
                     Material.BEEHIVE,
-                    "&f" + item.getItemName().replace(" Ingot", "") + " Mineralized Apiary",
+                    "&f" + item.getItemName().replace("锭", "") + "&f矿化蜂箱",
                     "",
-                    "&fProduces a material",
-                    "&fwith the help of bees",
+                    "&f让蜜蜂来帮你",
+                    "&f生产材料",
                     "",
                     LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
                     LoreBuilder.powerBuffer(16384),
@@ -631,10 +632,10 @@ public class DynaTechItemsSetup {
             if (item != null) {
                 SlimefunItemStack apiary = new SlimefunItemStack("DT_" + name.replace("_INGOT", "") + "_MINERALIZED_APIARY",
                     Material.BEEHIVE,
-                    "&f" + ItemUtils.getItemName(item).replace(" Ingot", "") + " Mineralized Apiary",
+                    "&f" + ItemStackHelper.getName(item).replace("锭", "") + "&f矿化蜂箱",
                     "",
-                    "&fProduces a material",
-                    "&fwith the help of bees",
+                    "&f让蜜蜂来帮你",
+                    "&f生产材料",
                     "",
                     LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
                     LoreBuilder.powerBuffer(16384),

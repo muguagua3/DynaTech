@@ -119,7 +119,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>net.guizhanss</groupId>
+            <groupId>com.github.SlimefunGuguProject</groupId>
             <artifactId>extrautils</artifactId>
             <version>bf89aee6ae</version>
             <scope>compile</scope>

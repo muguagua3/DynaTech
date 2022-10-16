@@ -106,7 +106,7 @@ public class MineralizedApiary extends AbstractElectricMachine {
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), OUTPUT_BORDER_SLOTS);
 
         preset.addItem(getProgressSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
-        preset.addItem(20, new CustomItemStack(Material.BEACON, "&f信息", "&f蜜蜂数量: {}", "&f当前速度: {}"), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(20, new CustomItemStack(Material.BEACON, "&f信息", "&f蜜蜂数量: {}", "&f生产速度: {}"), ChestMenuUtils.getEmptyClickHandler());
  
     }
 
@@ -131,7 +131,7 @@ public class MineralizedApiary extends AbstractElectricMachine {
             currSpeed = 30 - ((beeCount - 1) * 10);
         }
 
-        ItemStack infoStack = new CustomItemStack(Material.BEACON, "&f信息", "&f蜜蜂数量: " + String.valueOf(beeCount), "&f当前速度: " + String.valueOf(currSpeed) + "s");
+        ItemStack infoStack = new CustomItemStack(Material.BEACON, "&f信息", "&f蜜蜂数量: " + String.valueOf(beeCount), "&f生产速度: " + String.valueOf(currSpeed) + "s");
         menu.replaceExistingItem(20, infoStack);
     }
 }
