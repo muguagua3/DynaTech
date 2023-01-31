@@ -15,7 +15,6 @@ import me.profelements.dynatech.tasks.ItemBandTask;
 import net.guizhanss.guizhanlibplugin.updater.GuizhanBuildsUpdaterWrapper;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -54,8 +53,7 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
         if (!getConfig().getBoolean("options.disable-dimensionalhome-world")) {
             WorldCreator worldCreator = new WorldCreator("dimensionalhome");
             worldCreator.generator(new DimensionalHomeDimension());
-            World dimensionalHome = worldCreator.createWorld();
-            new BlockStorage(dimensionalHome);
+            worldCreator.createWorld();
         }
 
         DynaTechItemsSetup.setup(this);
