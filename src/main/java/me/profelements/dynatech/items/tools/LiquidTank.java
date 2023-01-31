@@ -19,6 +19,7 @@ import me.profelements.dynatech.DynaTechItems;
 import net.guizhanss.minecraft.dynatech.utils.FluidUtils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -74,13 +75,14 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable, Listener {
                 PersistentDataAPI.setInt(meta, FLUID_AMOUNT, fluidAmount + 1000);
 
                 List<String> lore = new ArrayList<>();
-                lore.add(ChatColor.GRAY + "A Liquid tank holding up to 16 buckets of some liquids");
+                lore.add(ChatColor.GRAY + "简单的液体掠夺者");
                 lore.add("");
-                lore.add("Right click to grab a liquid");
-                lore.add("Shift right click to place a liquid");
+                lore.add("右键点击装载液体");
+                lore.add("Shift + 右键点击倾倒液体");
                 lore.add("");
-                lore.add(ChatColor.WHITE + "Fluid Held: " + PersistentDataAPI.getString(meta, FLUID_NAME));
-                lore.add(ChatColor.WHITE + "Fluid Amount: " + PersistentDataAPI.getInt(meta, FLUID_AMOUNT));
+                lore.add(ChatColor.WHITE + "液体类型: " + FluidUtils.getFluidType(PersistentDataAPI.getString(meta,
+                    FLUID_NAME)));
+                lore.add(ChatColor.WHITE + "液体存量: " + PersistentDataAPI.getInt(meta, FLUID_AMOUNT));
                 meta.setLore(lore);
                 item.setItemMeta(meta);
                 DynaTech.runSync(() -> { block.setType(Material.AIR); });
@@ -109,13 +111,14 @@ public class LiquidTank extends SlimefunItem implements NotPlaceable, Listener {
                             PersistentDataAPI.setInt(meta, FLUID_AMOUNT, fluidAmount - 1000);
                             
                             List<String> lore = new ArrayList<>();
-                            lore.add(ChatColor.GRAY + "A Liquid tank holding up to 16 buckets of some liquids");
+                            lore.add(ChatColor.GRAY + "简单的液体掠夺者");
                             lore.add("");
-                            lore.add("Right click to grab a liquid");
-                            lore.add("Shift right click to place a liquid");
+                            lore.add("右键点击装载液体");
+                            lore.add("Shift + 右键点击倾倒液体");
                             lore.add("");
-                            lore.add(ChatColor.WHITE + "Fluid Held: " + PersistentDataAPI.getString(meta, FLUID_NAME));
-                            lore.add(ChatColor.WHITE + "Fluid Amount: " + PersistentDataAPI.getInt(meta, FLUID_AMOUNT));
+                            lore.add(ChatColor.WHITE + "液体类型: " + FluidUtils.getFluidType(PersistentDataAPI.getString(meta,
+                                FLUID_NAME)));
+                            lore.add(ChatColor.WHITE + "液体存量: " + PersistentDataAPI.getInt(meta, FLUID_AMOUNT));
                             meta.setLore(lore);
                             item.setItemMeta(meta);
                             DynaTech.runSync(() -> { block.setType(mat); });
