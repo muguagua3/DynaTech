@@ -52,23 +52,19 @@ public class AntigravityBubble extends AbstractElectricTicker {
 
 	@Override
 	protected void tick(Block b, SlimefunItem item) {
-        Set<UUID> playersAffected = enabledPlayers.get(b.getLocation());
-        if (playersAffected == null) {
-            playersAffected = new HashSet<>();
-            enabledPlayers.put(b.getLocation(), playersAffected);
-        }
-
         Collection<Entity> bubbledEntities = b.getWorld().getNearbyEntities(b.getLocation(), 16, 16, 16, Player.class::isInstance);
         for (Entity entity : bubbledEntities) {
             Player p = (Player) entity; 
 
             if (!p.getAllowFlight() && (p.getGameMode() != GameMode.CREATIVE || p.getGameMode() != GameMode.SPECTATOR)) {
-                playersAffected.add(p.getUniqueId());
+                enabledPlayers.get(b.getLocation()).add(p.getUniqueId()); 
                 p.setAllowFlight(true); 
             }
         }
 
-        for (UUID id : playersAffected) {
+
+
+        for (UUID id : enabledPlayers.getOrDefault(b.getLocation(), new HashSet<>())) {
             Player p = Bukkit.getPlayer(id); 
 
             if (p != null && !bubbledEntities.contains(p)) {
@@ -78,7 +74,7 @@ public class AntigravityBubble extends AbstractElectricTicker {
             }
         }
 
-        playersAffected.removeIf(uuid -> (Bukkit.getPlayer(uuid) != null && !bubbledEntities.contains(Bukkit.getPlayer(uuid))));
+        enabledPlayers.get(b.getLocation()).removeIf(uuid -> (Bukkit.getPlayer(uuid) != null && !bubbledEntities.contains(Bukkit.getPlayer(uuid)))); 
         
 	}
 
