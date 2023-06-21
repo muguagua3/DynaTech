@@ -1,5 +1,6 @@
 package me.profelements.dynatech.items.electric.transfer;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
@@ -20,7 +21,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -146,9 +146,8 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
                 ItemStack item = event.getItemInHand();
                 String locationString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
 
-                if (item != null && item.getType() == DynaTechItems.WIRELESS_ITEM_OUTPUT.getType() && item.hasItemMeta() && locationString != null) {
-                    BlockStorage.addBlockInfo(blockLoc, "wireless-input-location", locationString);
-
+                if (item.getType() == DynaTechItems.WIRELESS_ITEM_OUTPUT.getType() && item.hasItemMeta() && locationString != null) {
+                    StorageCacheUtils.setData(blockLoc, "wireless-input-location", locationString);
                 }
             }
 
@@ -160,26 +159,22 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
 
 			@Override
 			public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
-                BlockMenu inv = BlockStorage.getInventory(event.getBlock());
+                BlockMenu inv = StorageCacheUtils.getMenu(event.getBlock().getLocation());
 
                 if (inv != null) {
                     inv.dropItems(event.getBlock().getLocation(), getInputSlots());
                     inv.dropItems(event.getBlock().getLocation(), getOutputSlots());
 
                 }
-
-
-				BlockStorage.clearBlockInfo(event.getBlock().getLocation());
 			}
 
         };
     }
 
     protected void tick(Block b) {
-        String wirelessLocation = BlockStorage.getLocationInfo(b.getLocation(), "wireless-input-location");
+        String wirelessLocation = StorageCacheUtils.getData(b.getLocation(), "wireless-input-location");
         if (wirelessLocation != null) {
             sendItemsFromInput(b, wirelessLocation);
-
         }
     }
 
@@ -195,9 +190,10 @@ public class WirelessItemOutput extends SlimefunItem implements EnergyNetCompone
             }
         }
 
-        if (wirelessItemInput != null && BlockStorage.checkID(wirelessItemInput) != null && BlockStorage.checkID(wirelessItemInput).equals(DynaTechItems.WIRELESS_ITEM_INPUT.getItemId())) {
-            BlockMenu input = BlockStorage.getInventory(wirelessItemInput);
-            BlockMenu output = BlockStorage.getInventory(b);
+        var inputBlockData = StorageCacheUtils.getBlock(wirelessItemInput);
+        if (inputBlockData != null && inputBlockData.getSfId().equals(DynaTechItems.WIRELESS_ITEM_INPUT.getItemId())) {
+            BlockMenu input = inputBlockData.getBlockMenu();
+            BlockMenu output = StorageCacheUtils.getMenu(b.getLocation());
             updateKnowledgePane(output, getCharge(b.getLocation()));
 
             for (int i : getOutputSlots()) {

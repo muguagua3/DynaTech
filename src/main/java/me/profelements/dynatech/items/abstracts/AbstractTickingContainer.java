@@ -1,16 +1,14 @@
 package me.profelements.dynatech.items.abstracts;
 
-import org.bukkit.block.Block;
-import org.bukkit.inventory.ItemStack;
-
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 
 public abstract class AbstractTickingContainer extends AbstractContainer {
     
@@ -29,8 +27,8 @@ public abstract class AbstractTickingContainer extends AbstractContainer {
             }
 
             @Override
-            public void tick(Block b, SlimefunItem item, Config data) {
-                BlockMenu menu = BlockStorage.getInventory(b);
+            public void tick(Block b, SlimefunItem item, SlimefunBlockData data) {
+                BlockMenu menu = data.getBlockMenu();
                 if (menu != null) {
                     AbstractTickingContainer.this.tick(menu, b);
                 }

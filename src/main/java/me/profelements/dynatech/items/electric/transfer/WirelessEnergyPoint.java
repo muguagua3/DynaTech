@@ -1,5 +1,7 @@
 package me.profelements.dynatech.items.electric.transfer;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
@@ -7,15 +9,12 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
-import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.profelements.dynatech.DynaTech;
 import me.profelements.dynatech.DynaTechItems;
 import net.md_5.bungee.api.ChatColor;
@@ -24,7 +23,6 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -47,12 +45,12 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
         this.capacity = capacity;
         this.energyRate = energyRate;
 
-        addItemHandler(onRightClick(), onBlockPlace(), onBlockBreak());
+        addItemHandler(onRightClick(), onBlockPlace());
     }
 
     @Override
-    public int getGeneratedOutput(Location l, Config data) {
-        String wirelessBankLocation = BlockStorage.getLocationInfo(l, "wireless-location");
+    public int getGeneratedOutput(Location l, SlimefunBlockData data) {
+        String wirelessBankLocation = data.getData("wireless-location");
 
         int chargedNeeded = getCapacity() - getCharge(l);
 
@@ -68,7 +66,8 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
                 }
             }
 
-            if (wirelessEnergyBank != null && BlockStorage.checkID(wirelessEnergyBank) != null && BlockStorage.checkID(wirelessEnergyBank).equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId())) {
+            var bank = StorageCacheUtils.getSfItem(wirelessEnergyBank);
+            if (bank != null && bank.getId().equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId())) {
                 int BankCharge = getCharge(wirelessEnergyBank);
 
                 if (BankCharge > chargedNeeded) {
@@ -124,22 +123,11 @@ public class WirelessEnergyPoint extends SlimefunItem implements EnergyNetProvid
                 ItemStack item = event.getItemInHand();
                 String locationString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
 
-                if (item != null && item.getType() == DynaTechItems.WIRELESS_ENERGY_POINT.getType() && item.hasItemMeta() && locationString != null) {
-                    BlockStorage.addBlockInfo(blockLoc, "wireless-location", locationString);
+                if (item.getType() == DynaTechItems.WIRELESS_ENERGY_POINT.getType() && item.hasItemMeta() && locationString != null) {
+                    StorageCacheUtils.setData(blockLoc, "wireless-location", locationString);
 
                 }
             }
-
-        };
-    }
-
-    private ItemHandler onBlockBreak() {
-        return new BlockBreakHandler(false, false) {
-
-			@Override
-			public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
-				BlockStorage.clearBlockInfo(event.getBlock().getLocation());
-			}
 
         };
     }

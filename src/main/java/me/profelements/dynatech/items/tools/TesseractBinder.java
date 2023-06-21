@@ -1,5 +1,8 @@
 package me.profelements.dynatech.items.tools;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.callback.IAsyncReadCallback;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -8,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.profelements.dynatech.DynaTechItems;
 import me.profelements.dynatech.items.electric.transfer.Tesseract;
 import net.md_5.bungee.api.ChatColor;
@@ -16,6 +18,7 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -42,9 +45,26 @@ public class TesseractBinder extends SlimefunItem {
 
                 if (e.getPlayer().isSneaking()) {
                     String locString = PersistentDataAPI.getString(item.getItemMeta(), Tesseract.WIRELESS_LOCATION_KEY);
-                    if (item != null  && hasPermision && BlockStorage.checkID(blockLocation).equals(DynaTechItems.TESSERACT.getItemId()) && item.hasItemMeta() && locString != null) {
-                        BlockStorage.addBlockInfo(blockLocation, "tesseract-pair-location", locString);
-                        e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "已绑定光学传输器!"));
+                    var blockData = StorageCacheUtils.getBlock(blockLocation);
+                    if (hasPermision && blockData != null && blockData.getSfId().equals(DynaTechItems.TESSERACT.getItemId()) && item.hasItemMeta() && locString != null) {
+                        if (blockData.isDataLoaded()) {
+                            bind(blockLocation, locString, e.getPlayer());
+                        } else {
+                            Slimefun.getDatabaseManager().getBlockDataController().loadBlockDataAsync(
+                                blockData,
+                                new IAsyncReadCallback<>() {
+                                    @Override
+                                    public boolean runOnMainThread() {
+                                        return true;
+                                    }
+
+                                    @Override
+                                    public void onResult(SlimefunBlockData result) {
+                                        bind(blockLocation, locString, e.getPlayer());
+                                    }
+                                }
+                            );
+                        }
                     }
                 } else if (hasPermision && sfItem.getId().equals(DynaTechItems.TESSERACT.getItemId()) && blockLocation != null) {
                     ItemMeta im = item.getItemMeta();
@@ -57,5 +77,10 @@ public class TesseractBinder extends SlimefunItem {
 
             }
         };
+    }
+
+    private void bind(Location loc, String locStr, Player p) {
+        StorageCacheUtils.setData(loc, "tesseract-pair-location", locStr);
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "已绑定光学传输器!"));
     }
 }

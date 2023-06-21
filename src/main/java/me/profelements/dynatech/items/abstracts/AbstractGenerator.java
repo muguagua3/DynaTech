@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,7 +31,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 
 public abstract class AbstractGenerator extends AbstractContainer implements MachineProcessHolder<FuelOperation>, RecipeDisplayItem, EnergyNetProvider {
@@ -161,14 +161,14 @@ public abstract class AbstractGenerator extends AbstractContainer implements Mac
     @Override
     public int getGeneratedOutput(Location l, Config data) {
         Block b = l.getBlock();
-        BlockMenu menu = BlockStorage.getInventory(b); 
+        BlockMenu menu = StorageCacheUtils.getMenu(b.getLocation());
         
         FuelOperation currentOp = processor.getOperation(b);
         if (currentOp != null && menu != null) {
             if (checkFuelPreconditions(b)) {
                 
                 if(!currentOp.isFinished() && isChargeable()) {
-                    int charge = getCharge(l, data);
+                    int charge = getCharge(l);
                     processor.updateProgressBar(menu, 22, currentOp); 
                     
                     if(getCapacity() - charge >= getEnergyProduction()) {

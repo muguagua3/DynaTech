@@ -1,5 +1,7 @@
 package me.profelements.dynatech.items.electric.transfer;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -12,9 +14,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -81,11 +81,9 @@ public class WirelessItemInput extends SlimefunItem implements EnergyNetComponen
             }
 
             @Override
-            public void tick(Block block, SlimefunItem sfItem, Config data) {
+            public void tick(Block block, SlimefunItem sfItem, SlimefunBlockData data) {
                 WirelessItemInput.this.tick(block);
-
             }
-
 
         });
     }
@@ -95,23 +93,22 @@ public class WirelessItemInput extends SlimefunItem implements EnergyNetComponen
 
             @Override
             public void onPlayerBreak(BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
-                BlockMenu inv = BlockStorage.getInventory(event.getBlock());
+                BlockMenu inv = StorageCacheUtils.getMenu(event.getBlock().getLocation());
 
                 if (inv != null) {
                     inv.dropItems(event.getBlock().getLocation(), getInputSlots());
                     inv.dropItems(event.getBlock().getLocation(), getOutputSlots());
-
                 }
 
 
-                BlockStorage.clearBlockInfo(event.getBlock().getLocation());
+                Slimefun.getDatabaseManager().getBlockDataController().removeBlock(event.getBlock().getLocation());
             }
 
         };
     }
 
     protected void tick(Block b) {
-        BlockMenu menu = BlockStorage.getInventory(b);
+        BlockMenu menu = StorageCacheUtils.getMenu(b.getLocation());
         updateKnowledgePane(menu, getCharge(b.getLocation()));
     }
 

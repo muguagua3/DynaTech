@@ -5,8 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.RandomizedSet;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.profelements.dynatech.DynaTech;
 import me.profelements.dynatech.items.abstracts.AbstractElectricTicker;
 import org.bukkit.Material;
@@ -58,7 +58,7 @@ public class Orechid extends AbstractElectricTicker implements RecipeDisplayItem
                     DynaTech.runSync(() -> {
                         relBlock.setType(item.getType());
                         if (sfi != null) {
-                            BlockStorage.addBlockInfo(relBlock, "id", sfi.getId());
+                            Slimefun.getDatabaseManager().getBlockDataController().createBlock(relBlock.getLocation(), sfi.getId());
                         }
                     });
 
