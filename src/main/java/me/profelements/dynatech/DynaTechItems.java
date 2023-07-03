@@ -200,9 +200,9 @@ public class DynaTechItems {
 
     public static final SlimefunItemStack WITHER_GOLEM = new SlimefunItemStack("WITHER_GOLEM",
         Material.WITHER_SKELETON_SKULL,
-        "&6多方块结构: 凋零傀儡",
+        "&6多方块结构: 凋灵傀儡",
         "",
-        "生成一只凋零骷髅",
+        "生成一只凋灵骷髅",
         ""
     );
 
