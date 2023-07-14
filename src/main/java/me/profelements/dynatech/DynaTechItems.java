@@ -257,7 +257,7 @@ public class DynaTechItems {
         "",
         "&f&o就像一个小型温室",
         "",
-        "&c3倍生长速度",
+        "&b3倍生长速度",
         LoreBuilder.machine(MachineTier.MEDIUM, MachineType.MACHINE),
         LoreBuilder.speed(3),
         LoreBuilderDynamic.powerPerSecond(128)
