@@ -23,3 +23,8 @@ jobs:
           architecture: x64
       - name: Build with Maven
         run: mvn package --file pom.xml
+ name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: Dev Build
+          path: staging
