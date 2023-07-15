@@ -384,9 +384,9 @@ public class DynaTechItemsSetup {
 
         new AntigravityBubble(DynaTechItems.DT_MACHINES, DynaTechItems.ANTIGRAVITY_BUBBLE, RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                SlimefunItems.BLISTERING_INGOT_3, SlimefunItems.ENERGIZED_CAPACITOR, SlimefunItems.BLISTERING_INGOT_3,
-                SlimefunItems.REINFORCED_ALLOY_INGOT, DynaTechItems.STARDUST_REACTOR, SlimefunItems.REINFORCED_ALLOY_INGOT,
-                SlimefunItems.BOOSTED_URANIUM, DynaTechItems.STAINLESS_STEEL, SlimefunItems.BOOSTED_URANIUM,  
+                SlimefunItems.BLISTERING_INGOT_3,SlimefunItems.ENERGIZED_CAPACITOR,SlimefunItems.BLISTERING_INGOT_3,
+                SlimefunItems.REINFORCED_ALLOY_INGOT,DynaTechItems.STARDUST_REACTOR,SlimefunItems.REINFORCED_ALLOY_INGOT,
+                SlimefunItems.BOOSTED_URANIUM, DynaTechItems.STAINLESS_STEEL, SlimefunItems.BOOSTED_URANIUM
         })
         .setCapacity(1024)
         .setConsumption(128)
